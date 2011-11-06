@@ -1,0 +1,175 @@
+#!/bin/bash
+#$ -S /bin/bash
+
+# register a pair of lung images + binary masks
+# 1) preprocess, 
+#   1.1) normalize the lung images within masks to [0, 1] by linearly streching
+#   1.2) pad the preprocessed images
+# 2) register image, using Greedy SyN + Cross Correlation
+#   2.1) initialize the affine by register the lung masks, using ANTS
+#   2.2) deformable registration using ANTS
+
+
+
+# input
+#  fixImage
+#  movImage
+#  fixMask
+#  movMask
+#  iterations
+#  radius
+# output 
+#  warped moving image
+#  deformation fields
+
+
+
+
+# input
+fixImage=$1
+movImage=$2
+fixMask=$3
+movMask=$4
+
+ITERATIONS=$3
+
+# output
+outputPre=$4
+
+# internal parameters
+padRadius=10
+
+# paths for all binary utilities
+C3D=/home/songgang/pkg/bin/c3d
+UTILITIESDIR=/home/songgang/project/tustison/Utilities/gccrel
+
+
+ 
+# default temp working directory in the sub directory
+# of output label file
+tempRoot=`dirname $outputPre`
+fixImageName=`basename $fixImage`
+fixImageName=${fixImageName%%.*} # remove substring from back
+movImageName=`basename $movImage`
+movImageName=${movImageName%%.*} # remove substring from back
+tempDir=`${tempRoot}/${fixImageName}-${movImageName}-reg-tmp`
+
+
+function preprocess 
+{
+
+DIMENSION=3
+
+INPUTIMAGE=$1
+MASKIMAGE=$2
+OUTPUTIMAGE=$3
+TEMPDIR=$4
+
+TEMPPREFIX=`basename $INPUTIMAGE`
+TEMPPREFIX=$TEMPDIR/$TEMPPREFIX
+
+$C3D $INPUTIMAGE $MASKIMAGE -times -o $TEMPPREFIX"-preprocess-tmp1.nii.gz"
+${UTILITYDIRECTORY}/RescaleImageIntensity 3 $TEMPPREFIX"-preprocess-tmp1.nii.gz" $TEMPPREFIX"-preprocess-tmp2.nii.gz" 0 1
+$C3D $TEMPPREFIX"-preprocess-tmp2.nii.gz" -scale -1 -shift 1 $MASKIMAGE -times -o $TEMPPREFIX"-preprocess-tmp3.nii.gz"
+$ANTSDIRECTORY/ImageMath 3 $OUTPUTIMAGE PadImage $TEMPPREFIX"-preprocess-tmp3.nii.gz" $padRadius
+
+rm $TEMPPREFIX"-preprocess-tmp3.nii.gz"
+rm $TEMPPREFIX"-preprocess-tmp2.nii.gz"
+rm $TEMPPREFIX"-preprocess-tmp1.nii.gz"
+
+
+}
+
+
+function registerWithAffine
+{
+  ANTSDIRECTORYNICK=/home/tustison/ANTS/bin64
+ANTSDIRECTORY=/home/songgang/pkg/bin/ANTS/gccrel_itk_mt_test3
+MTANTSDIRECTORY=/home/songgang/project/mANTS/gccrel-mt
+UTILITYDIRECTORY=/home/tustison/Utilities/bin64
+
+ANTS=${MTANTSDIRECTORY}/ANTS
+WARPIMAGE=${ANTSDIRECTORY}/WarpImageMultiTransform
+COMPOSEWARP=${ANTSDIRECTORY}/ComposeMultiTransform
+MEASURESIM=${MTANTSDIRECTORY}/MeasureImageSimilarityMT
+
+DIMENSION=3
+
+OUTPUT=$1
+AFFINEMETRIC=${2}
+ITERATIONS=$3
+TRANSFORMATION=$4
+REGULARIZATION=$5
+IMAGEMETRIC=$6
+USERECURSIVEGAUSSIAN=${7}
+FIXEDIMAGE=$8
+MOVINGIMAGE=$9
+AFFINIT=${10}
+
+
+
+
+DEFORMEDIMAGE=${OUTPUT}deformed.nii.gz
+VECTORFIELD=${OUTPUT}Warp.nii.gz
+AFFINE=${OUTPUT}Affine.txt
+
+
+
+
+echo "---- registering $FIXEDIMAGE (fix) and $MOVINGIMAGE (mov) ----"
+echo $ANTS $DIMENSION --output-naming $OUTPUT --image-metric $IMAGEMETRIC --number-of-iterations $ITERATIONS --transformation-model  $TRANSFORMATION --regularization $REGULARIZATION --affine-metric-type MI  --geodesic 2  --initial-affine $AFFINIT --continue-affine false --number-of-threads 8 --use-recursive-gaussian $USERECURSIVEGAUSSIAN > ${OUTPUT}ANTSCall.txt
+echo "initial date:" `date` >> ${OUTPUT}ANTSCall.txt
+echo
+echo initial affine registration
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+echo Using affine init: $AFFINIT
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo 
+echo
+echo "after initial affine date:" `date` >> ${OUTPUT}ANTSCall.txt
+echo
+echo deformable registration
+echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/bin/time $ANTS $DIMENSION --output-naming $OUTPUT --image-metric $IMAGEMETRIC --number-of-iterations $ITERATIONS --transformation-model  $TRANSFORMATION --regularization $REGULARIZATION --affine-metric-type MI  --geodesic 2  --initial-affine $AFFINIT --continue-affine false --number-of-threads 8 --use-recursive-gaussian $USERECURSIVEGAUSSIAN
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo 
+echo
+echo "after ANTS date:" `date` >> ${OUTPUT}ANTSCall.txt
+$WARPIMAGE $DIMENSION $MOVINGIMAGE $DEFORMEDIMAGE $VECTORFIELD $AFFINE -R $FIXEDIMAGE
+$MEASURESIM 3 4 $FIXEDIMAGE $DEFORMEDIMAGE >> ${OUTPUT}ANTSCall.txt
+
+
+echo "after compute jacobian date:" `date` >> ${OUTPUT}ANTSCall.txt
+
+}
+
+
+
+
+
+
+
+# step 1: preprocess
+# input: $fixImage
+# output: $fixImageName"-preprocessed.nii.gz"
+
+$fixProcess=${tempDir}/${fixImageName}-preprocessed.nii.gz
+preprocess $fixImage $fixMask $fixProcess $tempDir
+
+$movProcess=${tempDir}/${movImageName}-preprocessed.nii.gz
+preprocess $movImage $movMask $movProcess $tempDir
+
+
+# step 2: registration
+# input: $fixProcess, $fixMask
+
+# step 3: unpad all the deformation field
+
+
+
+
+
+
+
+
+
