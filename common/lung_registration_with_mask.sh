@@ -34,6 +34,12 @@ movMask=$4
 # output
 outputPre=$5
 
+
+if [ $# -lt 5 ]; then
+  echo "Need 5 parameters: fixImage movImage fixMask movMask outputPre"
+  exit;
+fi
+
 # internal parameters
 padRadius=10
 
@@ -41,8 +47,9 @@ padRadius=10
 # paths for all binary utilities
 C3D=/home/songgang/pkg/bin/c3d
 UTILITIESDIR=/home/songgang/project/tustison/Utilities/gccrel
-ANTSDIRECTORY=/home/songgang/pkg/bin/ANTS/gccrel_itk_mt_test3
-MTANTSDIRECTORY=/home/songgang/project/mANTS/gccrel-mt
+# ANTSDIRECTORY=/home/songgang/pkg/bin/ANTS/gccrel_itk_mt_test3
+ANTSDIRECTORY=/home/songgang/project/ANTS/gccrel-Nov-06-2011/Examples
+# MTANTSDIRECTORY=/home/songgang/project/mANTS/gccrel-mt
 # UTILITIESDIR=/home/tustison/Utilities/bin64
 
 
@@ -53,14 +60,19 @@ fixImageName=`basename $fixImage`
 fixImageName=${fixImageName%%.*} # remove substring from back
 movImageName=`basename $movImage`
 movImageName=${movImageName%%.*} # remove substring from back
-tempDir=`${tempRoot}/${fixImageName}-${movImageName}-reg-tmp`
+# tempDir=${tempRoot}/${fixImageName}-${movImageName}-reg-tmp
+tempDir=${outputPre}-tmp
+
+if [ ! -d $tempDir ]; then
+  mkdir -p $tempDir
+fi
 
 function MYDO
 {
   echo "-------------------------------------------------"
   echo $*
   echo "-------------------------------------------------"
-  echo $*
+   $*
   echo ">>>>>>>>> DONE <<<<<<<<<<<<<<<<"
 }
 
@@ -76,12 +88,15 @@ function preprocess
   TEMPDIR=$4
 
   TEMPPREFIX=`basename $INPUTIMAGE`
+  TEMPPREFIX=${TEMPPREFIX%%.*}
   TEMPPREFIX=$TEMPDIR/$TEMPPREFIX
 
   MYDO $C3D $INPUTIMAGE $MASKIMAGE -times -o $TEMPPREFIX"-preprocess-tmp1.nii.gz"
   MYDO ${UTILITIESDIR}/RescaleImageIntensity 3 $TEMPPREFIX"-preprocess-tmp1.nii.gz" $TEMPPREFIX"-preprocess-tmp2.nii.gz" 0 1
   MYDO $C3D $TEMPPREFIX"-preprocess-tmp2.nii.gz" -scale -1 -shift 1 $MASKIMAGE -times -o $TEMPPREFIX"-preprocess-tmp3.nii.gz"
   MYDO $ANTSDIRECTORY/ImageMath 3 $OUTPUTIMAGE PadImage $TEMPPREFIX"-preprocess-tmp3.nii.gz" $padRadius
+
+  MYDO cp $TEMPPREFIX"-preprocess-tmp3.nii.gz" $OUTPUTIMAGE
 
   MYDO rm $TEMPPREFIX"-preprocess-tmp3.nii.gz"
   MYDO rm $TEMPPREFIX"-preprocess-tmp2.nii.gz"
@@ -94,10 +109,10 @@ function preprocess
 function register
 {
 
-  ANTS=${MTANTSDIRECTORY}/ANTS
+  ANTS=${ANTSDIRECTORY}/ANTS
   WARPIMAGE=${ANTSDIRECTORY}/WarpImageMultiTransform
   COMPOSEWARP=${ANTSDIRECTORY}/ComposeMultiTransform
-  MEASURESIM=${MTANTSDIRECTORY}/MeasureImageSimilarityMT
+  # MEASURESIM=${MTANTSDIRECTORY}/MeasureImageSimilarityMT
   WARPIMAGE=${ANTSDIRECTORY}/WarpImageMultiTransform
 
   DIMENSION=3
@@ -112,6 +127,7 @@ function register
   tempDir=$8
 
   iterations="200x200x200x200x50"
+  # iterations="1x0x0x0x0"
   metricRadius=2
   gradientStep=0.25
   gradientSigma=6.0
@@ -134,8 +150,10 @@ function register
   VECTORFIELD=${OUTPUT}Warp.nii.gz
   AFFINE=${OUTPUT}Affine.txt
 
-
-  echo "---- registering $FIXEDIMAGE (fix) and $MOVINGIMAGE (mov) ----"
+  echo "---- registering"
+  echo "fix: $FIXEDIMAGE"
+  echo "mov: $MOVINGIMAGE"
+  echo "----"
   echo $ANTS $DIMENSION --output-naming ${OUTPUT}initaff --image-metric $AFFINEMETRIC --number-of-iterations 0 --transformation-model $TRANSFORMATION --regularization $REGULARIZATION --affine-metric-type MI --number-of-affine-iterations 10000x10000x10000x10000 > ${OUTPUT}ANTSCall.txt
   echo $ANTS $DIMENSION --output-naming $OUTPUT --image-metric $IMAGEMETRIC --number-of-iterations $ITERATIONS --transformation-model  $TRANSFORMATION --regularization $REGULARIZATION --affine-metric-type MI  --initial-affine ${OUTPUT}initaffAffine.txt --continue-affine false --number-of-threads 8 --use-recursive-gaussian $USERECURSIVEGAUSSIAN >> ${OUTPUT}ANTSCall.txt
   echo "initial date:" `date` >> ${OUTPUT}ANTSCall.txt
@@ -172,12 +190,14 @@ function register
 # input: $fixImage
 # output: $fixImageName"-preprocessed.nii.gz"
 
-$fixProcessed=${tempDir}/${fixImageName}-preprocessed.nii.gz
-preprocess $fixImage $fixMask $fixProcessed $tempDir
+fixProcessed=${tempDir}/${fixImageName}-preprocessed.nii.gz
+movProcessed=${tempDir}/${movImageName}-preprocessed.nii.gz
 
-$movProcessed=${tempDir}/${movImageName}-preprocessed.nii.gz
+# :<<abkadfjadksfjkadsjfv
+preprocess $fixImage $fixMask $fixProcessed $tempDir
 preprocess $movImage $movMask $movProcessed $tempDir
 
+# abkadfjadksfjkadsjfv
 
 # step 2: registration
 # input: 

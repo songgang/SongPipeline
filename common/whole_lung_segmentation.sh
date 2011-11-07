@@ -56,7 +56,11 @@ echo 4
 # MYDO ${UTILITIESDIR}/SmoothLungs $FirstRoundLungMask $SmoothLobeDivisionMask 15
 echo 5
 # MYDO cp $FirstRoundLungMask $OUTPUTLABEL
-MYDO $C3D $SmoothLobeDivisionMask -threshold 2 2 1 0 -o $OUTPUTLABEL
+# MYDO $C3D $SmoothLobeDivisionMask -threshold 2 2 1 0 -o $OUTPUTLABEL
+
+# reset the orient code to RPI for Kobe lung database
+MYDO $C3D $OUTPUTLABEL -orient RPI -o $OUTPUTLABEL 
+
 if [ 1 ]; then
 echo "this command only for displaying"
 echo rm $FirstRoundLungMask
