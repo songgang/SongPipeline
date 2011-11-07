@@ -72,24 +72,24 @@ function MYDO
   echo "-------------------------------------------------"
   echo $*
   echo "-------------------------------------------------"
-   $*
+  $*
   echo ">>>>>>>>> DONE <<<<<<<<<<<<<<<<"
 }
 
 
-function preprocess 
+function preprocess()
 {
 
-  DIMENSION=3
+  local DIMENSION=3
 
-  INPUTIMAGE=$1
-  MASKIMAGE=$2
-  OUTPUTIMAGE=$3
-  TEMPDIR=$4
+  local INPUTIMAGE=$1
+  local MASKIMAGE=$2
+  local OUTPUTIMAGE=$3
+  local TEMPDIR=$4
 
-  TEMPPREFIX=`basename $INPUTIMAGE`
-  TEMPPREFIX=${TEMPPREFIX%%.*}
-  TEMPPREFIX=$TEMPDIR/$TEMPPREFIX
+  local TEMPPREFIX=`basename $INPUTIMAGE`
+  local TEMPPREFIX=${TEMPPREFIX%%.*}
+  local TEMPPREFIX=$TEMPDIR/$TEMPPREFIX
 
   MYDO $C3D $INPUTIMAGE $MASKIMAGE -times -o $TEMPPREFIX"-preprocess-tmp1.nii.gz"
   MYDO ${UTILITIESDIR}/RescaleImageIntensity 3 $TEMPPREFIX"-preprocess-tmp1.nii.gz" $TEMPPREFIX"-preprocess-tmp2.nii.gz" 0 1
@@ -106,49 +106,49 @@ function preprocess
 }
 
 
-function register
+function register()
 {
 
-  ANTS=${ANTSDIRECTORY}/ANTS
-  WARPIMAGE=${ANTSDIRECTORY}/WarpImageMultiTransform
-  COMPOSEWARP=${ANTSDIRECTORY}/ComposeMultiTransform
-  # MEASURESIM=${MTANTSDIRECTORY}/MeasureImageSimilarityMT
-  WARPIMAGE=${ANTSDIRECTORY}/WarpImageMultiTransform
+  local ANTS=${ANTSDIRECTORY}/ANTS
+  local WARPIMAGE=${ANTSDIRECTORY}/WarpImageMultiTransform
+  local COMPOSEWARP=${ANTSDIRECTORY}/ComposeMultiTransform
+  # local MMEASURESIM=${MTANTSDIRECTORY}/MeasureImageSimilarityMT
+  local WARPIMAGE=${ANTSDIRECTORY}/WarpImageMultiTransform
 
-  DIMENSION=3
+  local DIMENSION=3
 
-  fixProcess=$1
-  fixMask=$2
-  fixOrig=$3
-  movProcess=$4
-  movMask=$5
-  movOrig=$6
-  outputPre=$7
-  tempDir=$8
+  local fixProcess=$1
+  local fixMask=$2
+  local fixOrig=$3
+  local movProcess=$4
+  local movMask=$5
+  local movOrig=$6
+  local outputPre=$7
+  local tempDir=$8
 
-  iterations="200x200x200x200x50"
-  # iterations="1x0x0x0x0"
-  metricRadius=2
-  gradientStep=0.25
-  gradientSigma=6.0
-  totalFieldSigma=0
+  local iterations="200x200x200x200x50"
+  # local Miterations="1x0x0x0x0"
+  local metricRadius=2
+  local gradientStep=0.25
+  local gradientSigma=6.0
+  local totalFieldSigma=0
 
 
-  OUTPUT=$outputPre
-  AFFINEMETRIC="MSQ[$fixMask,$movMask,1]"
-  ITERATIONS=$iterations
-  TRANSFORMATION="SyN[$gradientStep]"
-  REGULARIZATION="Gauss[$gradientSigma,$totalFieldSigma]"
-  IMAGEMETRIC="CC[$fixProcess,$movProcess,1,$metricRadius]"
-  USERECURSIVEGAUSSIAN="false"
+  local OUTPUT=$outputPre
+  local AFFINEMETRIC="MSQ[$fixMask,$movMask,1]"
+  local ITERATIONS=$iterations
+  local TRANSFORMATION="SyN[$gradientStep]"
+  local REGULARIZATION="Gauss[$gradientSigma,$totalFieldSigma]"
+  local IMAGEMETRIC="CC[$fixProcess,$movProcess,1,$metricRadius]"
+  local USERECURSIVEGAUSSIAN="false"
 
-  FIXEDIMAGE=$fixOrig
-  MOVINGIMAGE=$movOrig
+  local FIXEDIMAGE=$fixOrig
+  local MOVINGIMAGE=$movOrig
 
   # output filename
-  DEFORMEDIMAGE=${OUTPUT}deformed.nii.gz
-  VECTORFIELD=${OUTPUT}Warp.nii.gz
-  AFFINE=${OUTPUT}Affine.txt
+  local DEFORMEDIMAGE=${OUTPUT}deformed.nii.gz
+  local VECTORFIELD=${OUTPUT}Warp.nii.gz
+  local AFFINE=${OUTPUT}Affine.txt
 
   echo "---- registering"
   echo "fix: $FIXEDIMAGE"
@@ -182,9 +182,75 @@ function register
 
 }
 
+function AnalyzeDeformation()
+{
+  # compute the Jacobian of the composed deformation field
+
+  local ANTS=${ANTSDIRECTORY}/ANTS
+  local WARPIMAGE=${ANTSDIRECTORY}/WarpImageMultiTransform
+  local COMPOSEWARP=${ANTSDIRECTORY}/ComposeMultiTransform
+  local JACOBIAN=${ANTSDIRECTORY}/ANTSJacobian
 
 
 
+  DIMENSION=3
+
+  OUTPUT=$1
+  FIXEDIMAGE=$2
+  MOVINGIMAGE=$3
+  FIXEDMASK=$4
+  ORIGFIXEDIMAGE=$5
+  ORIGMOVINGIMAGE=$6
+
+  echo
+  echo $OUTPUT
+  echo $FIXEDIMAGE
+  echo $MOVINGIMAGE
+  echo $FIXEDMASK
+  echo $ORIGFIXEDIMAGE
+  echo $ORIGMOVINGIMAGE
+  echo ${OUTPUT}ANTSCall.txt
+
+
+  DEFORMEDIMAGE=${OUTPUT}deformed.nii.gz
+  VECTORFIELD=${OUTPUT}Warp.nii.gz
+  AFFINE=${OUTPUT}Affine.txt
+  TOTALVECTORFIELD=${OUTPUT}TotalWarp.nii.gz
+  DEFORMEDORIGIMAGE=${OUTPUT}OrigDeformed.nii.gz
+
+  # if [ "A" != "A" ]
+  # then
+
+
+  echo >> ${OUTPUT}ANTSCall.txt
+  echo "analyze jacobian initial date:" `date` >> ${OUTPUT}ANTSCall.txt
+  echo
+  echo "--- compose the affine and the deformation field --- " `date` >> ${OUTPUT}ANTSCall.txt
+  echo $COMPOSEWARP $DIMENSION $TOTALVECTORFIELD $VECTORFIELD $AFFINE -R $FIXEDIMAGE >> ${OUTPUT}ANTSCall.txt
+  $COMPOSEWARP $DIMENSION $TOTALVECTORFIELD $VECTORFIELD $AFFINE -R $FIXEDIMAGE >> ${OUTPUT}ANTSCall.txt
+  echo
+
+  echo "--- compute the jacobian of the composed deformation --- " `date` >> ${OUTPUT}ANTSCall.txt
+  echo $JACOBIAN $DIMENSION $TOTALVECTORFIELD ${OUTPUT} 0 $FIXEDMASK 0 >> ${OUTPUT}ANTSCall.txt
+  $JACOBIAN $DIMENSION $TOTALVECTORFIELD ${OUTPUT} 0 $FIXEDMASK 0 >> ${OUTPUT}ANTSCall.txt
+  echo
+
+
+#  echo "--- warp the original moving image  --- " `date` >> ${OUTPUT}ANTSCall.txt
+#  echo $WARPIMAGE $DIMENSION $ORIGMOVINGIMAGE $DEFORMEDORIGIMAGE $TOTALVECTORFIELD -R $ORIGFIXEDIMAGE >> ${OUTPUT}ANTSCall.txt
+#  $WARPIMAGE $DIMENSION $ORIGMOVINGIMAGE $DEFORMEDORIGIMAGE $TOTALVECTORFIELD -R $ORIGFIXEDIMAGE >> ${OUTPUT}ANTSCall.txt
+#  echo
+
+  # fi
+
+  # making some extra symbol links here
+#  ln -fs $FIXEDMASK `dirname $OUTPUT`
+#  ln -fs $ORIGFIXEDIMAGE `dirname $OUTPUT`
+#  ln -fs $ORIGMOVINGIMAGE `dirname $OUTPUT`
+
+  echo "analyze jacobian ending date" `date` >> ${OUTPUT}ANTSCall.txt
+
+}
 
 # step 1: preprocess
 # input: $fixImage
@@ -209,6 +275,13 @@ preprocess $movImage $movMask $movProcessed $tempDir
 #  $tempDir
 
 register $fixProcessed $fixMask $fixImage $movProcessed $movMask $movImage $outputPre $tempDir
+
+
+# step 3: post analyze the deformation field
+AnalyzeDeformation $outputPre $fixProcessed $movProcessed $fixMask $fixImage $movImage
+
+
+
 
 # optional step 3: unpad all the deformation field
 

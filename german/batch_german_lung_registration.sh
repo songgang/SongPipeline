@@ -61,7 +61,7 @@ for (( i=0; i<nbImg; i++)); do
   origMovImagePath=$origDir/$subject/$movSeries.nii.gz
   maskFixPath=$maskDir/$subject/${fixSeries}-whole-lung-mask.nii.gz
   maskMovPath=$maskDir/$subject/${movSeries}-whole-lung-mask.nii.gz 
-  regOutputPrefix=$regDir/$subject/${subject}_fix_${fixSeries}_mov_${movSeries}
+  regOutputPrefix=$regDir/$subject/fix_${fixSeries}_mov_${movSeries}
   
   # make sure the output directory exists
   regOutputDir=`dirname $regOutputPrefix`
