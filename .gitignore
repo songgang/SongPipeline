@@ -1,0 +1,6 @@
+# OS generated files #
+######################
+*.sh~
+.DS_Store
+*.sh.swp
+*.gitignore.swp
