@@ -82,7 +82,7 @@ for (( i=0; i<nbImg; i++)); do
   
   echo "Registration pair of lungs for: $subject fix: $fixSeries mov: $movSeries"
   qsub -pe serial 8 -e $regOutputDir -o $regOutputDir -j y \
-        $commonScriptDir/lung_registration_with_mask.sh \
+        $commonScriptDir/lung_registration_with_mask_postprocess.sh \
         $origFixImagePath \
         $origMovImagePath \
         $maskFixPath \
