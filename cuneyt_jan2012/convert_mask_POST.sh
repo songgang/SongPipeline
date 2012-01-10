@@ -40,9 +40,9 @@ l1=$inputDir/MaskFiles/${lobes[0]}-$imgname.hdr
 l2=$inputDir/MaskFiles/${lobes[1]}-$imgname.hdr
 l3=$inputDir/MaskFiles/${lobes[2]}-$imgname.hdr
 
-# $C3D $l1 -threshold 976 976 1 0 -as A -clear $l2 -threshold 976 976 1 0 -push A -add -as A -clear $l3 -threshold 976 976 1 0 -push A -add -as A -clear -push A -threshold 1 Inf 1 0 -o $outmask
+$C3D $l1 -threshold 976 976 1 0 -as A -clear $l2 -threshold 976 976 1 0 -push A -add -as A -clear $l3 -threshold 976 976 1 0 -push A -add -as A -clear -push A -threshold 1 Inf 1 0 -o $outmask
 
-# ln -s $inputImg $subout/$imgname.hdr
+ln -s $inputImg $subout/$imgname.hdr
 ln -s $(dirname $inputImg)/$(basename $inputImg .hdr).img.gz $subout/$imgname.img.gz
 
 

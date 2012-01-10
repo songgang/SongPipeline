@@ -9,12 +9,6 @@ dstDir=/home/songgang/project/Cuneyt/Jan2012/output
 currentDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 echo $currentDir;
 
-:<<haha
-pathList="
-ALVIN-PRE/SUPINE-10cm/ALVIN-PRE-SUPINE-10cm
-"
-haha
-
 #:<<haha
 pathList="
 ALVIN-POST/PRONE-10cm/ALVIN-POST-PRONE-10cm
@@ -23,6 +17,49 @@ ALVIN-POST/SUPINE-10cm/ALVIN-POST-SUPINE-10cm
 ALVIN-POST/SUPINE-30cm/ALVIN-POST-SUPINE-30cm
 ALVIN-PRE/SUPINE-10cm/ALVIN-PRE-SUPINE-10cm
 ALVIN-PRE/SUPINE-30cm/ALVIN-PRE-SUPINE-30cm
+
+BARTLETT-POST/PRONE-10cm/BARTLETT-POST-PRONE-10cm
+BARTLETT-POST/PRONE-30cm/BARTLETT-POST-PRONE-30cm
+BARTLETT-POST/SUPINE-10cm/BARTLETT-POST-SUPINE-10cm
+BARTLETT-POST/SUPINE-30cm/BARTLETT-POST-SUPINE-30cm
+BARTLETT-PRE/SUPINE-10cm/BARTLETT-PRE-SUPINE-10cm
+BARTLETT-PRE/SUPINE-30cm/BARTLETT-PRE-SUPINE-30cm
+
+CLYDE-POST/PRONE-10cm/CLYDE-POST-PRONE-10cm
+CLYDE-POST/PRONE-30cm/CLYDE-POST-PRONE-30cm
+CLYDE-POST/SUPINE-10cm/CLYDE-POST-SUPINE-10cm
+CLYDE-POST/SUPINE-30cm/CLYDE-POST-SUPINE-30cm
+CLYDE-PRE/SUPINE-10cm/CLYDE-PRE-SUPINE-10cm
+CLYDE-PRE/SUPINE-30cm/CLYDE-PRE-SUPINE-30cm
+
+DALLAS-POST/PRONE-10cm/DALLAS-POST-PRONE-10cm
+DALLAS-POST/PRONE-30cm/DALLAS-POST-PRONE-30cm
+DALLAS-POST/SUPINE-10cm/DALLAS-POST-SUPINE-10cm
+DALLAS-POST/SUPINE-30cm/DALLAS-POST-SUPINE-30cm
+DALLAS-PRE/SUPINE-10cm/DALLAS-PRE-SUPINE-10cm
+DALLAS-PRE/SUPINE-30cm/DALLAS-PRE-SUPINE-30cm
+
+EVANT-POST/PRONE-10cm/EVANT-POST-PRONE-10cm
+EVANT-POST/PRONE-30cm/EVANT-POST-PRONE-30cm
+EVANT-POST/SUPINE-10cm/EVANT-POST-SUPINE-10cm
+EVANT-POST/SUPINE-30cm/EVANT-POST-SUPINE-30cm
+EVANT-PRE/SUPINE-10cm/EVANT-PRE-SUPINE-10cm
+EVANT-PRE/SUPINE-30cm/EVANT-PRE-SUPINE-30cm
+
+FLINT-POST/PRONE-10cm/FLINT-POST-PRONE-10cm
+FLINT-POST/PRONE-30cm/FLINT-POST-PRONE-30cm
+FLINT-POST/SUPINE-10cm/FLINT-POST-SUPINE-10cm
+FLINT-POST/SUPINE-30cm/FLINT-POST-SUPINE-30cm
+FLINT-PRE/SUPINE-10cm/FLINT-PRE-SUPINE-10cm
+FLINT-PRE/SUPINE-30cm/FLINT-PRE-SUPINE-30cm
+
+GILMER-POST/PRONE-10cm/GILMER-POST-PRONE-10cm
+GILMER-POST/PRONE-30cm/GILMER-POST-PRONE-30cm
+GILMER-POST/SUPINE-10cm/GILMER-POST-SUPINE-10cm
+GILMER-POST/SUPINE-30cm/GILMER-POST-SUPINE-30cm
+GILMER-PRE/SUPINE-10cm/GILMER-PRE-SUPINE-10cm
+GILMER-PRE/SUPINE-30cm/GILMER-PRE-SUPINE-30cm
+
 "
 #haha
 
@@ -68,13 +105,13 @@ for (( i=0; i<nbPath; i++ )); do
 	if [ $timing == 'PRE' ];
 	then
 		lobes=( ${prelobes[*]} );
-		# qsub -pe serial 2 -e $dstDir -o $dstDir -j y $currentDir/convert_mask_PRE.sh $srcDir/${pathA}.hdr $dstDir
-		. $currentDir/convert_mask_PRE.sh $srcDir/${pathA}.hdr $dstDir
+		 qsub -pe serial 2 -e $dstDir -o $dstDir -j y $currentDir/convert_mask_PRE.sh $srcDir/${pathA}.hdr $dstDir
+		#. $currentDir/convert_mask_PRE.sh $srcDir/${pathA}.hdr $dstDir
 	elif [ $timing == 'POST' ];
 	then
 		lobes=( ${postlobes[*]} );
-		# qsub -pe serial 2 -e $dstDir -o $dstDir -j y $currentDir/convert_mask_POST.sh $srcDir/${pathA}.hdr $dstDir
-		. $currentDir/convert_mask_POST.sh $srcDir/${pathA}.hdr $dstDir
+		 qsub -pe serial 2 -e $dstDir -o $dstDir -j y $currentDir/convert_mask_POST.sh $srcDir/${pathA}.hdr $dstDir
+		#. $currentDir/convert_mask_POST.sh $srcDir/${pathA}.hdr $dstDir
 	else
 		echo "!!!!!!!! wrong timing:? $timing";
 	fi;
