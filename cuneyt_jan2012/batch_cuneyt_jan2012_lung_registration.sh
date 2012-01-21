@@ -13,8 +13,14 @@ regDir=/home/songgang/project/Cuneyt/Jan2012/output
 #0002/Series0017
 #"
 
+regList="
+DALLAS-PRE
+SUPINE-30cm
+SUPINE-10cm
+"
+
 # block comment
-#:<<adfadsfasdfadsffdfd
+:<<adfadsfasdfadsffdfd
 regList="
 ALVIN-POST
 PRONE-30cm
@@ -114,7 +120,7 @@ SUPINE-10cm
 
 
 "
-#adfadsfasdfadsffdfd
+adfadsfasdfadsffdfd
 
 
 regList=( $regList ) # convert to array from string

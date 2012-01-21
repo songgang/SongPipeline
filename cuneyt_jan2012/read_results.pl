@@ -3,6 +3,12 @@
 $outputDir = '/home/songgang/project/Cuneyt/Jan2012/output';#'/home/tustison/Data/TakahashiDogData/AdditionalData/ImageVolumes/';
 
 $dogs[0] = 'ALVIN';
+push @dogs, 'BARTLETT';
+push @dogs, 'CLYDE';
+push @dogs, 'DALLAS';
+push @dogs, 'EVANT';
+push @dogs, 'FLINT';
+push @dogs, 'GILMER';
 
 $timings[0] = 'PRE';
 push @timings, 'POST';
@@ -10,7 +16,7 @@ push @timings, 'POST';
 $positionsA[0] = 'SUPINE';
 push @positionsA, 'PRONE';
 
-$regcase = 'fix-10cm-mov-30cm';
+$regcase = 'fix-30cm-mov-10cm';
 
 $lobes[0] = 'LUL';
 push @lobes, 'LML';

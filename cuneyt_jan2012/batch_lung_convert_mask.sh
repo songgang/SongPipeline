@@ -9,7 +9,11 @@ dstDir=/home/songgang/project/Cuneyt/Jan2012/output
 currentDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 echo $currentDir;
 
-#:<<haha
+pathList="
+DALLAS-PRE/SUPINE-30cm/DALLAS-PRE-SUPINE-30cm
+"
+
+:<<haha
 pathList="
 ALVIN-POST/PRONE-10cm/ALVIN-POST-PRONE-10cm
 ALVIN-POST/PRONE-30cm/ALVIN-POST-PRONE-30cm
@@ -61,7 +65,8 @@ GILMER-PRE/SUPINE-10cm/GILMER-PRE-SUPINE-10cm
 GILMER-PRE/SUPINE-30cm/GILMER-PRE-SUPINE-30cm
 
 "
-#haha
+haha
+
 
 prelobes=( 'LLL' 'LML' 'LUL' 'RCL' 'RLL' 'RML' 'RUL' )
 postlobes=( 'LLL' 'LML' 'LUL' );
@@ -105,13 +110,13 @@ for (( i=0; i<nbPath; i++ )); do
 	if [ $timing == 'PRE' ];
 	then
 		lobes=( ${prelobes[*]} );
-		 qsub -pe serial 2 -e $dstDir -o $dstDir -j y $currentDir/convert_mask_PRE.sh $srcDir/${pathA}.hdr $dstDir
-		#. $currentDir/convert_mask_PRE.sh $srcDir/${pathA}.hdr $dstDir
+		# qsub -pe serial 2 -e $dstDir -o $dstDir -j y $currentDir/convert_mask_PRE.sh $srcDir/${pathA}.hdr $dstDir
+		. $currentDir/convert_mask_PRE.sh $srcDir/${pathA}.hdr $dstDir
 	elif [ $timing == 'POST' ];
 	then
 		lobes=( ${postlobes[*]} );
-		 qsub -pe serial 2 -e $dstDir -o $dstDir -j y $currentDir/convert_mask_POST.sh $srcDir/${pathA}.hdr $dstDir
-		#. $currentDir/convert_mask_POST.sh $srcDir/${pathA}.hdr $dstDir
+		# qsub -pe serial 2 -e $dstDir -o $dstDir -j y $currentDir/convert_mask_POST.sh $srcDir/${pathA}.hdr $dstDir
+	#	. $currentDir/convert_mask_POST.sh $srcDir/${pathA}.hdr $dstDir
 	else
 		echo "!!!!!!!! wrong timing:? $timing";
 	fi;
