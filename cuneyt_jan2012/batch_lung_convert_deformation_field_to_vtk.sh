@@ -14,12 +14,11 @@ qsuboutDir=/home/songgang/project/Cuneyt/Jan2012/output
 # currentDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 # echo $currentDir;
 
-# pathList="
-# DALLAS-PRE/SUPINE-30cm/DALLAS-PRE-SUPINE-30cm
-# DALLAS-POST/PRONE-10cm/DALLAS-POST-PRONE-10cm
-# "
+pathList="
+ALVIN-PRE/SUPINE-30cm/ALVIN-PRE-SUPINE-30cm
+"
 
-# <<haha
+:<<haha
 pathList="
 ALVIN-POST/PRONE-30cm/ALVIN-POST-PRONE-30cm
 ALVIN-POST/SUPINE-30cm/ALVIN-POST-SUPINE-30cm
@@ -50,7 +49,7 @@ GILMER-POST/SUPINE-30cm/GILMER-POST-SUPINE-30cm
 GILMER-PRE/SUPINE-30cm/GILMER-PRE-SUPINE-30cm
 
 "
-#haha
+haha
 
 
 

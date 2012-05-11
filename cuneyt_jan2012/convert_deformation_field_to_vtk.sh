@@ -72,8 +72,18 @@ NICKPS=/home/songgang/project/tustison/Utilities/gccrel/CreatePrincipalStrainIma
 PSVECOUTPUTPRE=/home/songgang/project/Cuneyt/Jan2012/output/${dog}-${timing}/${pos}-fix-30cm-mov-10cm/${dog}-${timing}-${pos}-fix-30cm-mov-10cm_PSvec
 PS1VECTORFIELD=${PSVECOUTPUTPRE}1.nii.gz
 
+PSMAGOUTPUTPRE=/home/songgang/project/Cuneyt/Jan2012/output/${dog}-${timing}/${pos}-fix-30cm-mov-10cm/${dog}-${timing}-${pos}-fix-30cm-mov-10cm_PS
 
-$NICKPS 3 $TOTALVECTORFIELD $PSVECOUTPUTPRE 0 $FIXEDMASK
+SMOOTHTOTALVECTORFIELD=/home/songgang/project/Cuneyt/Jan2012/output/${dog}-${timing}/${pos}-fix-30cm-mov-10cm/${dog}-${timing}-${pos}-fix-30cm-mov-10cmTotalWarp-smooth.nii.gz
+
+# the strain computation is sensitive to noise (needs to compute gradient) adds extra smoothing here
+  
+/home/songgang/pkg/bin/c3d -mcs $TOTALVECTORFIELD -foreach -smooth 6vox -endfor -omc 3 $SMOOTHTOTALVECTORFIELD
+
+# recompute the ps1 eigenvalues since deformation were not smoothed before
+$NICKPS 3 $SMOOTHTOTALVECTORFIELD $PSMAGOUTPUTPRE 1 $FIXEDMASK
+
+$NICKPS 3 $SMOOTHTOTALVECTORFIELD $PSVECOUTPUTPRE 0 $FIXEDMASK
 # not needed any more, have changed Nick's code
 # change the image header since PS1 from Nick's output is different from the original input
 # $C3D $FIXEDMASK $PS1VECTORFIELD -copy-transform -o $PS1VECTORFIELD
