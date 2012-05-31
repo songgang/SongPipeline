@@ -98,7 +98,7 @@ for (( i=0; i<nbPath; i++ )); do
 	echo -e "pos: \t$pos"
 	echo -e "pressuure: \t$pressure"
 
-  qsub -pe serial 2 -e $qsuboutDir -o $qsuboutDir -j y $commonScriptDir/convert_deformation_field_to_vtk.sh $srcDir/${pathA}.hdr
+  qsub -pe serial 4 -e $qsuboutDir -o $qsuboutDir -j y $commonScriptDir/convert_deformation_field_to_vtk.sh $srcDir/${pathA}.hdr
   # bash $commonScriptDir/convert_deformation_field_to_vtk.sh $srcDir/${pathA}.hdr
 
 	# break;
