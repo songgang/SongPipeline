@@ -78,7 +78,7 @@ SMOOTHTOTALVECTORFIELD=/home/songgang/project/Cuneyt/Jan2012/output/${dog}-${tim
 
 # the strain computation is sensitive to noise (needs to compute gradient) adds extra smoothing here
   
-/home/songgang/pkg/bin/c3d -mcs $TOTALVECTORFIELD -foreach -smooth 6vox -endfor -omc 3 $SMOOTHTOTALVECTORFIELD
+/home/songgang/pkg/bin/c3d -mcs $TOTALVECTORFIELD -foreach -smooth 20vox -endfor -omc 3 $SMOOTHTOTALVECTORFIELD
 
 # recompute the ps1 eigenvalues since deformation were not smoothed before
 $NICKPS 3 $SMOOTHTOTALVECTORFIELD $PSMAGOUTPUTPRE 1 $FIXEDMASK
