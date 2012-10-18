@@ -1,0 +1,17 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+License checkout failed.
+License Manager Error -4
+Maximum number of users for MATLAB reached. 
+Try again later. 
+To see a list of current users use the lmstat utility or contact your License Administrator.
+
+Troubleshoot this issue by visiting: 
+http://www.mathworks.com/support/lme4a
+
+Diagnostic Information:
+Feature: MATLAB 
+License path: /home/local/matlab_r2007a/etc/license.dat:/home/local/matlab_r2007a/etc/*.lic: 
+FLEXnet Licensing error: -4,132.
+Severe:
+The program '[21755] : Native' has exited with code 1 (0x1).

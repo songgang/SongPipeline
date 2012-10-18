@@ -1,0 +1,2 @@
+#!/bin/bash
+bash /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/script/metricc.sh /mnt/aibs1/PUBLIC/Data/Input/DrewWarrenLungData/ATCases/ImageVolumes/59e_20081027100226812_CT/59e_20081027100226812_CT.nii.gz /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/59e_20081027100226812_CT/59e_20081027100226812_CT_smooth.nii.gz 59e_20081027100226812_CT /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/59e_20081027100226812_CT

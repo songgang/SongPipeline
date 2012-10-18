@@ -1,0 +1,9 @@
+function mm = fill_value_into_metric_matrix(m)
+
+mm = zeros(length(region_cat), length(metric_cat));
+a = abs(log(mtable(3, :) ./ mtable(4, :)));
+for ii = 1:size(asum, 1);
+    asum(ii, 1:(idxm(ii,2)-idxm(ii,1)+1)) = a(idxm(ii,1):idxm(ii,2));
+end;
+
+

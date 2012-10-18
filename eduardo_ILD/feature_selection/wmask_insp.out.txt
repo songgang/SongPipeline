@@ -1,0 +1,66 @@
+ImageVolumes
+process: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes
+===========================================================
+image: B20inspf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B20inspf/B20inspf.nii.gz
+input mask: B20inspf-lungmaskbin
+process whole lung
+It took 231 seconds
+process erosion mask
+process_ero_mask
+It took 891 seconds
+process attenuation mask
+It took 130 seconds
+process lobe mask
+It took 695 seconds
+===========================================================
+image: B30inspf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B30inspf/B30inspf.nii.gz
+input mask: B20inspf-lungmaskbin
+process whole lung
+It took 221 seconds
+process erosion mask
+process_ero_mask
+It took 830 seconds
+process attenuation mask
+It took 64 seconds
+process lobe mask
+It took 665 seconds
+===========================================================
+image: B41inspf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B41inspf/B41inspf.nii.gz
+input mask: B20inspf-lungmaskbin
+process whole lung
+It took 243 seconds
+process erosion mask
+process_ero_mask
+It took 906 seconds
+process attenuation mask
+It took 130 seconds
+process lobe mask
+It took 702 seconds
+===========================================================
+image: B50inspf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B50inspf/B50inspf.nii.gz
+input mask: B20inspf-lungmaskbin
+process whole lung
+It took 241 seconds
+process erosion mask
+process_ero_mask
+It took 909 seconds
+process attenuation mask
+It took 135 seconds
+process lobe mask
+It took 714 seconds
+===========================================================
+image: B60inspf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B60inspf/B60inspf.nii.gz
+input mask: B20inspf-lungmaskbin
+process whole lung
+It took 235 seconds
+process erosion mask
+process_ero_mask
+It took 904 seconds
+process attenuation mask
+It took 137 seconds
+process lobe mask

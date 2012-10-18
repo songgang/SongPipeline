@@ -1,0 +1,31 @@
+function mlist_detail = assemble_metric_name_in_detail(mlist, out_dim_list)
+
+
+
+% mlist_detail = cell(1, sum(out_dim_list));
+% cnt = 1;
+% for ii = 1:length(mlist)
+%     for jj = 1:out_dim_list(ii)
+%         mlist_detail{cnt} = [mlist{ii}, '-', sprintf('%d', jj)];
+%         cnt = cnt+1;
+%     end;
+% end;
+
+
+for ii = 1:length(mlist)
+    mlist_detail{cnt:cnt+out_dimlist(ii)-1} = fetch_metric_names(mlist{ii});
+end;
+
+
+function detail = fetch_metric_names(metric_file)
+
+if length(strfind(metric_file, 'Volume')) > 0
+    detail = {'volume'};
+elseif length(strfind(metric_file, 'FirstOrder')) > 0
+    detail = {'mean' 'sigma' 'sum' 'skewness' 'kurtosis' 'entropy' '5th%' '95th%' '5th%mean' '95th%mean' 'min' 'max'};
+elseif length(strfind(metric_file, 'FirstOrder')) > 0
+    detail = 
+elseif length(strfind(metric_file, 'FirstOrder')) > 0
+else
+    fprintf(2, '%s is not valid!!!!!!!!!!!!!!!!!\n', metric_file);
+end;

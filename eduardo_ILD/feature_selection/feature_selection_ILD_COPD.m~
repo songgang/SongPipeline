@@ -1,0 +1,74 @@
+function [idx_fea_rank, fea_value] = feature_selection_ILD_COPD(xdata, ylabel, mrmr_labels, selection_method)
+
+xdata_ILD = xdata((ylabel == 1), :);
+xdata_COPD = xdata((ylabel == 2), :);
+nb_total = size(xdata, 2);
+
+switch selection_method
+    case {'mRMR'}
+        mrmr_input_filename = '/dev/shm/mrmr_input_tmp.txt';
+        mrmr_output_filename = '/dev/shm/mrmr_output_tmp.txt';
+        write_mrmr_csv(mrmr_input_filename, mrmr_labels, xdata_ILD, xdata_COPD);
+        
+        command = sprintf('/dev/shm/mrmr -i %s -t 1 -m MID -n 400 > %s', mrmr_input_filename, mrmr_output_filename);
+        system(command);
+        [idx_fea_rank, fea_value] = analyze_mRMR(mrmr_output_filename, nb_total);
+        
+%     case {'mRMR - PFT only'} 
+    case {'MaxRel'}
+        
+        mrmr_input_filename = '/dev/shm/mrel_input_tmp.txt';
+        mrmr_output_filename = '/dev/shm/mrel_output_tmp.txt';
+        write_mrmr_csv(mrmr_input_filename, mrmr_labels, xdata_ILD, xdata_COPD);
+        
+        command = sprintf('/dev/shm/mrmr -i %s -t 1 -m MID -n 400 > %s', mrmr_input_filename, mrmr_output_filename);
+        system(command);
+        % nb_total - 1 is because the downloaded mrmr only gives n-1 values
+        % in relevance
+        [idx_fea_rank, fea_value] = analyze_mRel(mrmr_output_filename, nb_total-1);
+        
+end;
+
+
+a1 = zeros(nb_total, 1);
+a1(idx_fea_rank) = fea_value;
+
+
+
+
+
+
+
+
+function [idx_fea_rank, fea_value] = analyze_mRMR(filename, nb_total)
+
+fp = fopen(filename);
+[tline, bf] = locate_str_in_file( '*** mRMR features ***',fp);
+tline = fgetl(fp);
+if tline ~= 'Order 	 Fea 	 Name 	 Score'
+    fpritnf(2, 'read %s err:\n', tline);
+end;
+% start from here
+C = textscan(fp, '%f%f%s%f');
+
+fclose(fp);
+
+idx_fea_rank = C{2}(1:nb_total);
+fea_value = C{4}(1:nb_total);
+
+
+function [idx_fea_rank, fea_value] = analyze_mRel(filename, nb_total)
+
+fp = fopen(filename);
+[tline, bf] = locate_str_in_file( '*** MaxRel features ***',fp);
+tline = fgetl(fp);
+if tline ~= 'Order 	 Fea 	 Name 	 Score'
+    fpritnf(2, 'read %s err:\n', tline);
+end;
+% start from here
+C = textscan(fp, '%f%f%s%f');
+
+fclose(fp);
+
+idx_fea_rank = C{2}(1:nb_total);
+fea_value = C{4}(1:nb_total);

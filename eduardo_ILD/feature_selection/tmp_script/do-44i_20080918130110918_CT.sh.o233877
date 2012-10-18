@@ -1,0 +1,41 @@
+-------------------------------------------------
+/home/songgang/mnt/project/segtree/gccrel-itkcvs/Medial 3 /mnt/aibs1/PUBLIC/Data/Input/DrewWarrenLungData/ATCases/ImageVolumes/44i_20080918130110918_CT/44i_20080918130110918_CT.nii.gz -LS -gradient_sigma 0.1 -speed_beta 0.05 -stop_time 1000 -seed_index [257 259 283] -freezing_intensity -900 -debug_file_prefix /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/44i_20080918130110918_CT/44i_20080918130110918_CT
+-------------------------------------------------
+ Spacing [0.736328, 0.736328, 1]
+ Origin [-176.132, -395.522, -340]
+ Direction 
+1 0 0
+0 1 0
+0 0 1
+
+ Size : 512 512  314
+double=0.1
+double=0.05
+double=1000
+double=-900
+int[0]=257
+int[1]=259
+int[2]=283
+LevelSetOpt: 
+  gradient_sigma=0.1
+  speed_beta=0.05
+  stop_time=1000
+  freezing_intensity=-900
+  seed_index=[257,259,283]
+  dump_debug_info=0
+allocate: source image region:[512, 512, 314]
+allocate: newly allocated image region:[512, 512, 314]
+stop here!
+allocate: source image region:[512, 512, 314]
+allocate: newly allocated image region:[512, 512, 314]
+ fast marching ....
+Write image to: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/44i_20080918130110918_CT/44i_20080918130110918_CT_time.nii.gz
+>>>>>>>>> DONE <<<<<<<<<<<<<<<<
+-------------------------------------------------
+/home/songgang/mnt/pkg/bin/c3d /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/44i_20080918130110918_CT/44i_20080918130110918_CT_time.nii.gz -threshold [0 1500 1 0] /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/44i_20080918130110918_CT/44i_20080918130110918_CT_time.nii.gz -multiply /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/44i_20080918130110918_CT/44i_20080918130110918_CT_time.nii.gz -threshold [0 1500 0 1] -scale 1500 -add -o /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/44i_20080918130110918_CT/44i_20080918130110918_CT_time.nii.gz
+-------------------------------------------------
+>>>>>>>>> DONE <<<<<<<<<<<<<<<<
+-------------------------------------------------
+/home/songgang/mnt/pkg/bin/c3d /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/44i_20080918130110918_CT/44i_20080918130110918_CT_time.nii.gz -threshold [0 240 1 0] -o /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/44i_20080918130110918_CT/44i_20080918130110918_CT_airways.nii.gz
+-------------------------------------------------
+>>>>>>>>> DONE <<<<<<<<<<<<<<<<

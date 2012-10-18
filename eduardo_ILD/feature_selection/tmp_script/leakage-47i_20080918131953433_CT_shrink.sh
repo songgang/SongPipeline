@@ -1,0 +1,2 @@
+#!/bin/bash
+bash /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/script/segairwaysLS1.sh /mnt/aibs1/PUBLIC/Data/Input/DrewWarrenLungData/ATCases/ImageVolumes/47i_20080918131953433_CT_shrink/47i_20080918131953433_CT_shrink.nii.gz /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/47i_20080918131953433_CT_shrink /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/47i_20080918131953433_CT_shrink/47i_20080918131953433_CT_shrink_airways.nii.gz 47i_20080918131953433_CT_shrink

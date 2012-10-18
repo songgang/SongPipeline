@@ -1,0 +1,2 @@
+#!/bin/bash
+bash /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/script/metricc.sh /mnt/aibs1/PUBLIC/Data/Input/DrewWarrenLungData/ATCases/ImageVolumes/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink.nii.gz /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink_smooth.nii.gz 50i_20080918134535730_CT_shrink /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink

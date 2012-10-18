@@ -1,0 +1,317 @@
+\documentclass[12pt]{article}
+
+\usepackage[dvips,letterpaper,landscape]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{afterpage}
+% \special{landscape}
+% \usepackage[letterpaper,landscape]{geometry}
+
+\textheight 6.5in
+
+%opening
+\title{ILD/COPD Analysis with Image Metrics and PFT patterns}
+\date{}
+% \author{}
+
+\begin{document}
+
+\maketitle
+
+We compare the correlation of image metrics and the PFT values for two diseases: ILD and COPD. For each disease group, a subset is selected from Eduardo's database. The image metrics are computed from Spiromics pipeline. The PFT values are from Eduardo's excel file(first line for each subject). We are interested in if the metrics purely computed from the CT scanning are correlated with any quantitative physical test results; what's more, if there is, if such a correlation the same for different disease or not.
+
+The ILD dataset is [2, 4, 5, 6, 7, 12, 15, 17, 24, 27, 28, 31, 35, 44, 45, 48, 50, 51, 53, 54, 57]. (\textbf{A homogeneous subset of ILD is needed? re: Drew's email}). The COPD dataset is [8, 9, 10, 16, 18, 19, 20, 22, 25, 26, 34, 36, 37, 38, 39, 40, 52, 55, 56].
+
+
+There are 21 values from PFT for each subject. For image metrics, there are four groups for each subject. 
+\begin{enumerate}
+ \item whole lung of inspiration (total 30 values)
+ \item whole lung of expiration (total 30 values)
+ \item the metrics from inspiration minus the metrics from expiration (total 30 values)
+ \item the metrics on the Jacobian from the registration from expiration to inspiration (total 10 values)
+\end{enumerate}
+
+In each pair for correlation test, the rho value and p value are displayed separately. The color maps for both have been carefully designed. For the rho value, which is the correlation factor ranging from -1 to +1, the maximum correlation (+1) is displayed toward red in orange hue with the maximum inverse correlation (-1) toward red in purple hue, the least correlation (0) is toward light blue/green. 
+
+For the p value, the color map has been adjusted nonlinearly. Toward the confidence end (1), it is displayed toward red. Otherwise (from 0.15 to 1) it is in blue. The consistent in blue in this large range is made on purpose as any p value larger then 0.2 indicates no correlation.
+
+We have three types of correlation tests. 
+\begin{enumerate}
+ \item correlation of image metrics vs PFT.
+ \item correlation of PFT vs PFT
+ \item correlation of image metrics vs image metrics.
+\end{enumerate}
+
+The test contents are reflected in the titles of the figures. For example: ``rho-ILD----metrics-vs-PFT----Whole-Lung-Expiration'' means the rho value of ILD case from the correlation of image metrics to PFT using the whole lung expiration image. The following lists the total 36 figures, which are these figures are indexed in tables for your convenience.
+
+\noindent
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+PFT vs. & inspiration & expiration & inspiration minus expiration & Jacobian from registration \\
+\hline
+ILD
+& Fig.\ref{fig:rho-ILD----metrics-vs-PFT----Whole-Lung-Expiration}, \ref{fig:p-ILD----metrics-vs-PFT----Whole-Lung-Expiration}
+& Fig.\ref{fig:rho-ILD----metrics-vs-PFT----Whole-Lung-Inspiration}, \ref{fig:p-ILD----metrics-vs-PFT----Whole-Lung-Inspiration}
+& Fig.\ref{fig:rho-ILD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}, \ref{fig:p-ILD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+& Fig.\ref{fig:rho-ILD----metrics-vs-PFT----Whole-Lung-Registration}, \ref{fig:p-ILD----metrics-vs-PFT----Whole-Lung-Registration}
+\\
+\hline
+COPD
+& Fig.\ref{fig:rho-COPD----metrics-vs-PFT----Whole-Lung-Expiration}, .\ref{fig:p-COPD----metrics-vs-PFT----Whole-Lung-Expiration}
+& Fig.\ref{fig:rho-COPD----metrics-vs-PFT----Whole-Lung-Inspiration}, .\ref{fig:p-COPD----metrics-vs-PFT----Whole-Lung-Inspiration}
+& Fig.\ref{fig:rho-COPD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}, .\ref{fig:p-COPD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+& Fig.\ref{fig:rho-COPD----metrics-vs-PFT----Whole-Lung-Registration}, .\ref{fig:p-COPD----metrics-vs-PFT----Whole-Lung-Registration}
+\\
+\hline
+\end{tabular} 
+
+
+\noindent
+\begin{center}
+\begin{tabular}{|c||c|}
+\hline
+self correlation & PFT \\
+\hline
+ILD
+& Fig.\ref{fig:rho-ILD----PFT-vs-PFT}, \ref{fig:p-ILD----PFT-vs-PFT}
+\\
+\hline
+COPD
+& Fig.\ref{fig:rho-COPD----PFT-vs-PFT}, .\ref{fig:p-COPD----PFT-vs-PFT}
+\\
+\hline
+\end{tabular} 
+\end{center}
+
+\noindent
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+self correlation & inspiration & expiration & inspiration minus expiration & Jacobian from registration \\
+\hline
+ILD
+& Fig.\ref{fig:rho-ILD----metrics-vs-metrics----Whole-Lung-Expiration}, \ref{fig:p-ILD----metrics-vs-metrics----Whole-Lung-Expiration}
+& Fig.\ref{fig:rho-ILD----metrics-vs-metrics----Whole-Lung-Inspiration}, \ref{fig:p-ILD----metrics-vs-metrics----Whole-Lung-Inspiration}
+& Fig.\ref{fig:rho-ILD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}, \ref{fig:p-ILD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+& Fig.\ref{fig:rho-ILD----metrics-vs-metrics----Whole-Lung-Registration}, \ref{fig:p-ILD----metrics-vs-metrics----Whole-Lung-Registration}
+\\
+\hline
+COPD
+& Fig.\ref{fig:rho-COPD----metrics-vs-metrics----Whole-Lung-Expiration}, \ref{fig:p-COPD----metrics-vs-metrics----Whole-Lung-Expiration}
+& Fig.\ref{fig:rho-COPD----metrics-vs-metrics----Whole-Lung-Inspiration}, \ref{fig:p-COPD----metrics-vs-metrics----Whole-Lung-Inspiration}
+& Fig.\ref{fig:rho-COPD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}, .\ref{fig:p-COPD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+& Fig.\ref{fig:rho-COPD----metrics-vs-metrics----Whole-Lung-Registration}, \ref{fig:p-COPD----metrics-vs-metrics----Whole-Lung-Registration}
+\\
+\hline
+\end{tabular} 
+
+\clearpage
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-ILD----metrics-vs-PFT----Whole-Lung-Expiration.png}
+    \caption{rho-ILD----metrics-vs-PFT----Whole-Lung-Expiration}
+    \label{fig:rho-ILD----metrics-vs-PFT----Whole-Lung-Expiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-ILD----metrics-vs-PFT----Whole-Lung-Expiration.png}
+    \caption{p-ILD----metrics-vs-PFT----Whole-Lung-Expiration}
+    \label{fig:p-ILD----metrics-vs-PFT----Whole-Lung-Expiration}
+\end{figure}
+
+\begin{figure}
+        \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-ILD----metrics-vs-PFT----Whole-Lung-Inspiration.png}
+    \caption{rho-ILD----metrics-vs-PFT----Whole-Lung-Inspiration}
+    \label{fig:rho-ILD----metrics-vs-PFT----Whole-Lung-Inspiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-ILD----metrics-vs-PFT----Whole-Lung-Inspiration.png}
+    \caption{p-ILD----metrics-vs-PFT----Whole-Lung-Inspiration}
+    \label{fig:p-ILD----metrics-vs-PFT----Whole-Lung-Inspiration}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-ILD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration.png}
+    \caption{rho-ILD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+    \label{fig:rho-ILD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-ILD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration.png}
+    \caption{p-ILD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+    \label{fig:p-ILD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-ILD----metrics-vs-PFT----Whole-Lung-Registration.png}
+    \caption{rho-ILD----metrics-vs-PFT----Whole-Lung-Registration}
+    \label{fig:rho-ILD----metrics-vs-PFT----Whole-Lung-Registration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-ILD----metrics-vs-PFT----Whole-Lung-Registration.png}
+    \caption{p-ILD----metrics-vs-PFT----Whole-Lung-Registration}
+    \label{fig:p-ILD----metrics-vs-PFT----Whole-Lung-Registration}
+\end{figure}
+
+\clearpage
+%%%%%%%%%%%%%%%%%%
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-COPD----metrics-vs-PFT----Whole-Lung-Expiration.png}
+    \caption{rho-COPD----metrics-vs-PFT----Whole-Lung-Expiration}
+    \label{fig:rho-COPD----metrics-vs-PFT----Whole-Lung-Expiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-COPD----metrics-vs-PFT----Whole-Lung-Expiration.png}
+    \caption{p-COPD----metrics-vs-PFT----Whole-Lung-Expiration}
+    \label{fig:p-COPD----metrics-vs-PFT----Whole-Lung-Expiration}
+\end{figure}
+
+\begin{figure}
+        \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-COPD----metrics-vs-PFT----Whole-Lung-Inspiration.png}
+    \caption{rho-COPD----metrics-vs-PFT----Whole-Lung-Inspiration}
+    \label{fig:rho-COPD----metrics-vs-PFT----Whole-Lung-Inspiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-COPD----metrics-vs-PFT----Whole-Lung-Inspiration.png}
+    \caption{p-COPD----metrics-vs-PFT----Whole-Lung-Inspiration}
+    \label{fig:p-COPD----metrics-vs-PFT----Whole-Lung-Inspiration}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-COPD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration.png}
+    \caption{rho-COPD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+    \label{fig:rho-COPD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-COPD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration.png}
+    \caption{p-COPD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+    \label{fig:p-COPD----metrics-vs-PFT----Whole-Lung-Inspiration-minus-Expiration}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-COPD----metrics-vs-PFT----Whole-Lung-Registration.png}
+    \caption{rho-COPD----metrics-vs-PFT----Whole-Lung-Registration}
+    \label{fig:rho-COPD----metrics-vs-PFT----Whole-Lung-Registration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-COPD----metrics-vs-PFT----Whole-Lung-Registration.png}
+    \caption{p-COPD----metrics-vs-PFT----Whole-Lung-Registration}
+    \label{fig:p-COPD----metrics-vs-PFT----Whole-Lung-Registration}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-ILD----PFT-vs-PFT.png}
+    \caption{rho-ILD----PFT-vs-PFT}
+    \label{fig:rho-ILD----PFT-vs-PFT}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-ILD----PFT-vs-PFT.png}
+    \caption{p-ILD----PFT-vs-PFT}
+    \label{fig:p-ILD----PFT-vs-PFT}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-COPD----PFT-vs-PFT.png}
+    \caption{rho-COPD----PFT-vs-PFT}
+    \label{fig:rho-COPD----PFT-vs-PFT}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-COPD----PFT-vs-PFT.png}
+    \caption{p-COPD----PFT-vs-PFT}
+    \label{fig:p-COPD----PFT-vs-PFT}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-ILD----metrics-vs-metrics----Whole-Lung-Expiration.png}
+    \caption{rho-ILD----metrics-vs-metrics----Whole-Lung-Expiration}
+    \label{fig:rho-ILD----metrics-vs-metrics----Whole-Lung-Expiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-ILD----metrics-vs-metrics----Whole-Lung-Expiration.png}
+    \caption{p-ILD----metrics-vs-metrics----Whole-Lung-Expiration}
+    \label{fig:p-ILD----metrics-vs-metrics----Whole-Lung-Expiration}
+\end{figure}
+
+\begin{figure}
+        \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-ILD----metrics-vs-metrics----Whole-Lung-Inspiration.png}
+    \caption{rho-ILD----metrics-vs-metrics----Whole-Lung-Inspiration}
+    \label{fig:rho-ILD----metrics-vs-metrics----Whole-Lung-Inspiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-ILD----metrics-vs-metrics----Whole-Lung-Inspiration.png}
+    \caption{p-ILD----metrics-vs-metrics----Whole-Lung-Inspiration}
+    \label{fig:p-ILD----metrics-vs-metrics----Whole-Lung-Inspiration}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-ILD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration.png}
+    \caption{rho-ILD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+    \label{fig:rho-ILD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-ILD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration.png}
+    \caption{p-ILD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+    \label{fig:p-ILD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-ILD----metrics-vs-metrics----Whole-Lung-Registration.png}
+    \caption{rho-ILD----metrics-vs-metrics----Whole-Lung-Registration}
+    \label{fig:rho-ILD----metrics-vs-metrics----Whole-Lung-Registration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-ILD----metrics-vs-metrics----Whole-Lung-Registration.png}
+    \caption{p-ILD----metrics-vs-metrics----Whole-Lung-Registration}
+    \label{fig:p-ILD----metrics-vs-metrics----Whole-Lung-Registration}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-COPD----metrics-vs-metrics----Whole-Lung-Expiration.png}
+    \caption{rho-COPD----metrics-vs-metrics----Whole-Lung-Expiration}
+    \label{fig:rho-COPD----metrics-vs-metrics----Whole-Lung-Expiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-COPD----metrics-vs-metrics----Whole-Lung-Expiration.png}
+    \caption{p-COPD----metrics-vs-metrics----Whole-Lung-Expiration}
+    \label{fig:p-COPD----metrics-vs-metrics----Whole-Lung-Expiration}
+\end{figure}
+
+\begin{figure}
+        \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-COPD----metrics-vs-metrics----Whole-Lung-Inspiration.png}
+    \caption{rho-COPD----metrics-vs-metrics----Whole-Lung-Inspiration}
+    \label{fig:rho-COPD----metrics-vs-metrics----Whole-Lung-Inspiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-COPD----metrics-vs-metrics----Whole-Lung-Inspiration.png}
+    \caption{p-COPD----metrics-vs-metrics----Whole-Lung-Inspiration}
+    \label{fig:p-COPD----metrics-vs-metrics----Whole-Lung-Inspiration}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-COPD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration.png}
+    \caption{rho-COPD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+    \label{fig:rho-COPD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-COPD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration.png}
+    \caption{p-COPD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+    \label{fig:p-COPD----metrics-vs-metrics----Whole-Lung-Inspiration-minus-Expiration}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/rho-COPD----metrics-vs-metrics----Whole-Lung-Registration.png}
+    \caption{rho-COPD----metrics-vs-metrics----Whole-Lung-Registration}
+    \label{fig:rho-COPD----metrics-vs-metrics----Whole-Lung-Registration}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.84\linewidth,viewport=100 60 620 550]{corr/p-COPD----metrics-vs-metrics----Whole-Lung-Registration.png}
+    \caption{p-COPD----metrics-vs-metrics----Whole-Lung-Registration}
+    \label{fig:p-COPD----metrics-vs-metrics----Whole-Lung-Registration}
+\end{figure}
+
+
+\end{document}

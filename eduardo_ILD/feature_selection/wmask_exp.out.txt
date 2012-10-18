@@ -1,0 +1,93 @@
+ImageVolumes
+process: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes
+===========================================================
+image: B20expf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B20expf/B20expf.nii.gz
+input mask: B20expf-lungmaskbin
+process whole lung
+It took 168 seconds
+process erosion mask
+process_ero_mask
+It took 658 seconds
+process attenuation mask
+It took 101 seconds
+process lobe mask
+It took 572 seconds
+===========================================================
+image: B30expf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B30expf/B30expf.nii.gz
+input mask: B20expf-lungmaskbin
+process whole lung
+It took 168 seconds
+process erosion mask
+process_ero_mask
+It took 663 seconds
+process attenuation mask
+It took 102 seconds
+process lobe mask
+It took 520 seconds
+===========================================================
+image: B41expf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B41expf/B41expf.nii.gz
+input mask: B20expf-lungmaskbin
+process whole lung
+It took 22 seconds
+process erosion mask
+process_ero_mask
+It took 175 seconds
+process attenuation mask
+It took 54 seconds
+process lobe mask
+It took 82 seconds
+===========================================================
+image: B50expf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B50expf/B50expf.nii.gz
+input mask: B20expf-lungmaskbin
+process whole lung
+It took 21 seconds
+process erosion mask
+process_ero_mask
+It took 181 seconds
+process attenuation mask
+It took 56 seconds
+process lobe mask
+It took 85 seconds
+===========================================================
+image: B60expf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B60expf/B60expf.nii.gz
+input mask: B20expf-lungmaskbin
+process whole lung
+It took 21 seconds
+process erosion mask
+process_ero_mask
+It took 182 seconds
+process attenuation mask
+It took 58 seconds
+process lobe mask
+It took 87 seconds
+===========================================================
+image: B70expf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B70expf/B70expf.nii.gz
+input mask: B20expf-lungmaskbin
+process whole lung
+It took 22 seconds
+process erosion mask
+process_ero_mask
+It took 181 seconds
+process attenuation mask
+It took 57 seconds
+process lobe mask
+It took 86 seconds
+===========================================================
+image: B80expf
+input image: /mnt/aibs1/PUBLIC/Data/Input/DrewReconstructionKernelsHRCT/ImageVolumes/B80expf/B80expf.nii.gz
+input mask: B20expf-lungmaskbin
+process whole lung
+It took 22 seconds
+process erosion mask
+process_ero_mask
+It took 183 seconds
+process attenuation mask
+It took 58 seconds
+process lobe mask
+It took 87 seconds

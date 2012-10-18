@@ -1,0 +1,24 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+
+                              < M A T L A B >
+                  Copyright 1984-2007 The MathWorks, Inc.
+                         Version 7.4.0.287 (R2007a)
+                              January 29, 2007
+
+ 
+  To get started, type one of these: helpwin, helpdesk, or demo.
+  For product information, visit www.mathworks.com.
+ 
+
+data_path =
+
+/home/songgang/project/ATCases/script/mrmr_tmp
+
+mrmr_threshold_value=0.481000
+lambda=0.001000
+job_id=thres-4
+data_path=/home/songgang/project/ATCases/script/mrmr_tmp
+Elapsed time is 38.738566 seconds.
+Elapsed time is 36.186215 seconds.
+Elapsed time is 40.729364 seconds.

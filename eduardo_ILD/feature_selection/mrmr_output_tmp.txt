@@ -1,0 +1,61 @@
+You have specified parameters: threshold=mu+/-1.00*sigma #fea=400 selection method=MID #maxVar=10000 #maxSample=1000
+
+Target classification variable (#1 column in the input data) has name=class 	entropy score=0.980
+
+*** MaxRel features ***
+Order 	 Fea 	 Name 	 Score
+1 	 5 	 FEF25-75% 	 0.476
+2 	 3 	 FEV1/FVC 	 0.439
+3 	 4 	 FEF_max 	 0.344
+4 	 6 	 FEF50 	 0.326
+5 	 14 	 TLC_(Pleth) 	 0.321
+6 	 8 	 MVV 	 0.269
+7 	 12 	 TGV 	 0.228
+8 	 19 	 VA 	 0.203
+9 	 9 	 SVC 	 0.194
+10 	 13 	 RV_(Pleth) 	 0.176
+11 	 15 	 RV/TLC 	 0.176
+12 	 11 	 ERV 	 0.122
+13 	 17 	 DLCOcor 	 0.117
+14 	 20 	 Raw 	 0.113
+15 	 21 	 sGaw 	 0.087
+16 	 1 	 FVC 	 0.076
+17 	 10 	 IC 	 0.071
+18 	 18 	 DL/VA 	 0.067
+19 	 2 	 FEV1 	 0.056
+20 	 16 	 DLCOunc 	 0.038
+
+*** mRMR features *** 
+Order 	 Fea 	 Name 	 Score
+1 	 5 	 FEF25-75% 	 0.476
+2 	 19 	 VA 	 0.090
+3 	 13 	 RV_(Pleth) 	 0.006
+4 	 4 	 FEF_max 	 0.006
+5 	 14 	 TLC_(Pleth) 	 0.021
+6 	 18 	 DL/VA 	 -0.041
+7 	 3 	 FEV1/FVC 	 0.006
+8 	 20 	 Raw 	 -0.044
+9 	 6 	 FEF50 	 -0.055
+10 	 11 	 ERV 	 -0.082
+11 	 21 	 sGaw 	 -0.086
+12 	 8 	 MVV 	 -0.073
+13 	 9 	 SVC 	 -0.067
+14 	 12 	 TGV 	 -0.077
+15 	 15 	 RV/TLC 	 -0.096
+16 	 16 	 DLCOunc 	 -0.093
+17 	 10 	 IC 	 -0.107
+18 	 17 	 DLCOcor 	 -0.102
+19 	 7 	 FIF50 	 -0.169
+20 	 2 	 FEV1 	 -0.172
+21 	 1 	 FVC 	 -0.219
+
+
+ *** This program and the respective minimum Redundancy Maximum Relevance (mRMR) 
+     algorithm were developed by Hanchuan Peng <hanchuan.peng@gmail.com>for
+     the paper 
+     "Feature selection based on mutual information: criteria of 
+      max-dependency, max-relevance, and min-redundancy,"
+      Hanchuan Peng, Fuhui Long, and Chris Ding, 
+      IEEE Transactions on Pattern Analysis and Machine Intelligence,
+      Vol. 27, No. 8, pp.1226-1238, 2005.
+

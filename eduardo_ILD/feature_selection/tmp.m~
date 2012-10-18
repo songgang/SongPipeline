@@ -1,0 +1,30 @@
+% generate the ROC curve based on the thresholding
+
+function [pos_as_pos, neg_as_pos] = get_ROC_by_thresholding(xdata, actual_label, nb_ROC_points, polarity)
+
+xmin = min(xdata);
+xmax = max(xdata);
+
+thres1 = linspace(xmin, xmax, nb_ROC_points-2);
+thres_delta = thres1(end) - thres1(end-1);
+thres = [thres1(1)-thres_delta, thres1, thres1(end)+thres_delta];
+
+true_positive_rate = zeros(1, nb_ROC_points);
+false_positive_rate = zeros(1, nb_ROC_points);
+
+nb_
+
+for ii = 1:nb_ROC_points
+    
+    if polarity > 0
+        predicted_label = (xdata > thres);
+    else
+        predicted_label = (xdata > thres_delta);
+    end;
+    
+    true_positive = sum(abs(predicted_label(actual_label==1)-1));
+    false_positive = sum(abs(predicted_label(actual_label==0)-0));
+    
+    true_positive_rate(ii) = true_positive / 
+    
+end;

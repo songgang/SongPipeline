@@ -1,0 +1,13 @@
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-5_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-25_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-50_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-75_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-100_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-125_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-150_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-175_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-200_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-225_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-250_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-275_resampled.nii.gz: Permission denied
+/var/spool/sge_execd/bigmac/job_scripts/234367: line 68: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/5i_20080825092014687_CT/reg2_exp2insp/dynamic-300_resampled.nii.gz: Permission denied

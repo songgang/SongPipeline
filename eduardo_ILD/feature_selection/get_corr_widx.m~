@@ -1,0 +1,32 @@
+function [rho_table, pval_table] = get_corr_widx(hypo, PFT, all_done_list)
+
+hypo1 = hypo(all_done_list, :);
+PFT1 = PFT(all_done_list, :);
+dim_PFT = size(PFT1, 2);
+
+% [rho, pval] = corrcoef([PFT1, hypo1]);
+
+dim_hypo = size(hypo, 2);
+
+for idx_hypo = 1:dim_hypo
+    for idx_PFT = 1:dim_PFT
+        
+        data_hypo = hypo(all_done_list, idx_hypo);
+        data_PFT = PFT(all_done_list, idx_PFT);
+        
+        % assume 0 is a invalide value
+        idx_hypo_valid = data_hypo > 0
+        idx_PFT_v
+        
+    end;
+end;
+
+
+
+
+[rho, pval] = corrcoef([PFT1, hypo1]);
+
+% rho_table = transpose(abs(rho(1:dim_PFT, (dim_PFT+1):end)));
+% per Drew's request, not using abs value
+rho_table = transpose((rho(1:dim_PFT, (dim_PFT+1):end)));
+pval_table = transpose((pval(1:dim_PFT, (dim_PFT+1):end)));

@@ -1,0 +1,37 @@
+-------------------------------------------------
+/home/songgang/mnt/project/segtree/gccrel-itkcvs/Medial 3 /mnt/aibs1/PUBLIC/Data/Input/DrewWarrenLungData/ATCases/ImageVolumes/56i_20081027094042265_CT/56i_20081027094042265_CT.nii.gz -LS -gradient_sigma 0.1 -speed_beta 0.05 -stop_time 1000 -seed_index [247 261 287] -freezing_intensity -950 -debug_file_prefix /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/56i_20081027094042265_CT/56i_20081027094042265_CT
+-------------------------------------------------
+ Spacing [0.59375, 0.59375, 1]
+ Origin [-151.703, -337.703, -419.5]
+ Direction 
+1 0 0
+0 1 0
+0 0 1
+
+ Size : 512 512  333
+double=0.1
+double=0.05
+double=1000
+double=-950
+int[0]=247
+int[1]=261
+int[2]=287
+LevelSetOpt: 
+  gradient_sigma=0.1
+  speed_beta=0.05
+  stop_time=1000
+  freezing_intensity=-950
+  seed_index=[247,261,287]
+  dump_debug_info=0
+allocate: source image region:[512, 512, 333]
+allocate: newly allocated image region:[512, 512, 333]
+stop here!
+allocate: source image region:[512, 512, 333]
+allocate: newly allocated image region:[512, 512, 333]
+ fast marching ....
+Write image to: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/56i_20081027094042265_CT/56i_20081027094042265_CT_time.nii.gz
+>>>>>>>>> DONE <<<<<<<<<<<<<<<<
+-------------------------------------------------
+/home/songgang/mnt/pkg/bin/c3d /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/56i_20081027094042265_CT/56i_20081027094042265_CT_time.nii.gz -threshold [0 200 1 0] -o /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/56i_20081027094042265_CT/56i_20081027094042265_CT_airways.nii.gz
+-------------------------------------------------
+>>>>>>>>> DONE <<<<<<<<<<<<<<<<

@@ -1,0 +1,41 @@
+-------------------------------------------------
+/home/songgang/mnt/project/segtree/gccrel-itkcvs/Medial 3 /mnt/aibs1/PUBLIC/Data/Input/DrewWarrenLungData/ATCases/ImageVolumes/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink.nii.gz -LS -gradient_sigma 0.1 -speed_beta 0.05 -stop_time 1000 -seed_index [244 222 236] -freezing_intensity -900 -debug_file_prefix /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink
+-------------------------------------------------
+ Spacing [0.751953, 0.751953, 0.998062]
+ Origin [-192.124, -343.124, -303.8]
+ Direction 
+1 0 0
+0 1 0
+0 0 1
+
+ Size : 512 512  258
+double=0.1
+double=0.05
+double=1000
+double=-900
+int[0]=244
+int[1]=222
+int[2]=236
+LevelSetOpt: 
+  gradient_sigma=0.1
+  speed_beta=0.05
+  stop_time=1000
+  freezing_intensity=-900
+  seed_index=[244,222,236]
+  dump_debug_info=0
+allocate: source image region:[512, 512, 258]
+allocate: newly allocated image region:[512, 512, 258]
+stop here!
+allocate: source image region:[512, 512, 258]
+allocate: newly allocated image region:[512, 512, 258]
+ fast marching ....
+Write image to: /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink_time.nii.gz
+>>>>>>>>> DONE <<<<<<<<<<<<<<<<
+-------------------------------------------------
+/home/songgang/mnt/pkg/bin/c3d /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink_time.nii.gz -threshold [0 1500 1 0] /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink_time.nii.gz -multiply /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink_time.nii.gz -threshold [0 1500 0 1] -scale 1500 -add -o /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink_time.nii.gz
+-------------------------------------------------
+>>>>>>>>> DONE <<<<<<<<<<<<<<<<
+-------------------------------------------------
+/home/songgang/mnt/pkg/bin/c3d /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink_time.nii.gz -threshold [0 240 1 0] -o /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/50i_20080918134535730_CT_shrink/50i_20080918134535730_CT_shrink_airways.nii.gz
+-------------------------------------------------
+>>>>>>>>> DONE <<<<<<<<<<<<<<<<

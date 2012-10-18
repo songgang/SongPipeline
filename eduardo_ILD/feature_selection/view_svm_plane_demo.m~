@@ -1,0 +1,118 @@
+% view_svm_plane_demo.m
+% this is a demo for svm hyperplane
+% for easy display purpose,
+%   the overal domain is [1,1] ~ [w=100, h=100]
+
+domain_width = 100;
+domain_height = 100;
+
+svm_opt = struct('name', '', 'fn', '', 'koptions', 0);
+
+svm_opt(1).name = 'linear kernel';
+svm_opt(1).fn = 'poly';
+svm_opt(1).koptions = 1;
+
+svm_opt(2).name = 'Gaussian kernel';
+svm_opt(2).fn = 'gaussian';
+svm_opt(2).koptions = domain_width / 2;
+
+
+jj = 1;
+
+fn = svm_opt(jj).fn;
+koptions = svm_opt(jj).koptions;
+lambda = 1e-6 * 1;
+
+
+
+a1 = load('fisheriris');
+idx_c1 = find(ismember(a1.species, 'setosa'));
+idx_c2 = find(ismember(a1.species, 'virginica'));
+train_data = [a1.meas(idx_c1, 2), a1.meas(idx_c1, 1); a1.meas(idx_c2, 2), a1.meas(idx_c2, 1)];
+train_label = [ones(length(idx_c1), 1); 2*ones(length(idx_c2), 1)];
+
+% fake some data
+train_label([60, 68, 82]) = 1;
+
+xmin = min(train_data(:, 1))*0.9;
+xmax = max(train_data(:, 1))/0.9;
+ymin = min(train_data(:, 2))*0.9;
+ymax = max(train_data(:, 2))/0.9;
+
+% rescale
+train_data(:, 1) = (train_data(:, 1) - xmin) / (xmax-xmin) * (domain_width-1) + 1;
+train_data(:, 2) = (train_data(:, 2) - ymin) / (ymax-ymin) * (domain_height-1) + 1;
+
+
+% train_data = [1 1; 50 100];
+% train_label = [1; 2];
+
+
+
+
+
+
+
+
+% run this first
+[ypred, xsup, w, b, nsv, posaux_list] = SVM_final(train_data, train_data, train_label, 2, fn,koptions, lambda);
+
+
+
+% xmin = min(train_data(:, 1));
+% xmax = max(train_data(:, 1));
+% ymin = min(train_data(:, 2));
+% ymax = max(train_data(:, 2));
+
+% [x1, y1] = meshgrid(xmin:0.005:xmax, ymin:0.005:ymax);
+% [x1, y1] = meshgrid(xmin:1:xmax, ymin:1:ymax);
+[x1, y1] = meshgrid(1:domain_width, 1:domain_height);
+
+x1 = x1(:);
+y1 = y1(:);
+
+kk = 2;
+if kk==2 
+    test_data = [x1(:), y1(:)];
+elseif kk==1
+    test_data = [x1(:)];
+else 
+    fprintf(2, 'only accept 1 or 2 classes');
+    return;
+end;
+
+[ypred_test] = svmmultival(test_data,xsup,w,b,nsv,fn,koptions);
+
+%%
+
+ypred_img = reshape(ypred_test, [domain_height, domain_width]);
+[yp_dx, yp_dy] = gradient(ypred_img, 1, 1);
+yplane_img = ((yp_dx.*yp_dx + yp_dy.*yp_dy) > 0.1);
+yplane_img = bwmorph(yplane_img ,'thin');
+
+
+figure(101); clf;
+subplot_tim(1,1,1,1,0);
+hold on; 
+
+% image(reshape(ypred_test, [domain_height, domain_width]));
+% colormap([0.6, 0, 0; 0 0.4 0.0]);
+image(yplane_img);
+colormap([1, 1, 1; 0 0.4 0.0]);
+
+% separation plane
+% plot(x1(ypred_test==1), y1(ypred_test==1), 'r.', 'MarkerSize', 4);
+% plot(x1(ypred_test==2), y1(ypred_test==2), 'b.', 'MarkerSize', 4);
+
+
+plot(train_data(train_label==1, 1), train_data(train_label==1, 2), 'r*');
+plot(train_data(train_label==2, 1), train_data(train_label==2, 2), 'gx');
+plot(train_data(train_label != ypred
+
+
+hold off;
+
+
+axis equal;
+axis([1 domain_width 1 domain_height]);
+axis off;
