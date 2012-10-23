@@ -5,7 +5,7 @@
 if 1
 %%
 
-[datelist, imglist, dbroot]=dblist('/home/songgang/project/EduardoILD/script/dblist_maya.sh');
+[datelist, imglist, dbroot]=dblist('/home/songgang/project/EduardoILD/script/SongPipeline/eduardo_ILD/dblist_maya.sh');
 mlist = metric_list();
 
 nb_date = length(datelist);

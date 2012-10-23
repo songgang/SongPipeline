@@ -21,8 +21,8 @@ i6 = [1, 7, 19, 26];
 
 % iall = [i1, -1, i2, -1, i3, -1, i4, -1, i5, -1, i6];
 
-idxuip = [i1];
-idxnonuip = [i4];
+idxuip = [i1, i2, i3, -1];
+idxnonuip = [i4, i5, i6];
 
 idxuip = idxuip(idxuip ~= 36);
 idxuip(idxuip > 36) = idxuip(idxuip > 36) - 1;
@@ -37,7 +37,7 @@ iall = [idxuip, idxnonuip];
 % iall = iall(iall ~= 36);
 % iall(iall > 36) = iall(iall > 36) - 1;
 
-a1reshuffle = 0.5 * ones(length(iall), size(mtable, 2));
+a1reshuffle = 1 * ones(length(iall), size(mtable, 2));
 idx_valid = find(iall ~= -1);
 a1reshuffle(idx_valid, :) = a1(iall(idx_valid), :); 
 
@@ -45,7 +45,7 @@ a1reshuffle(idx_valid, :) = a1(iall(idx_valid), :);
 
 idx_good_metric = [];
 for ii = 1:size(a1reshuffle, 2); 
-    [h, p] = ttest2(a1reshuffle(1:length(idxuip), ii), a1reshuffle((length(idxuip)+1):end, ii)); 
+    [h, p] = ttest2(a1reshuffle(1:length(idxuip)-1, ii), a1reshuffle((length(idxuip)+1):end, ii)); 
     if h==1 
         fprintf(2, 'ii=%d, h=%f,p=%f\n', ii, h, p);
         idx_good_metric(end+1) = ii;
@@ -57,5 +57,5 @@ imagesc(a1reshuffle(:, [idx_good_metric]));
 
 mlist_detail(idx_good_metric)'
 
-dump_to_csv('id', mlist_detail, imgname_table(:, 2), mtable, 'mtable_39subjects.csv');
-dump_to_csv('id', mlist_detail, imgname_table(:, 2), a1, 'mtable_39subjects_normalized_values.csv');
+% dump_to_csv('id', mlist_detail, imgname_table(:, 2), mtable, 'mtable_39subjects.csv');
+% dump_to_csv('id', mlist_detail, imgname_table(:, 2), a1, 'mtable_39subjects_normalized_values.csv');
