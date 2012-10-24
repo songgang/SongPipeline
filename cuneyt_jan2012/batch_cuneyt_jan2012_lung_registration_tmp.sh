@@ -13,16 +13,16 @@ regDir=/home/songgang/project/Cuneyt/Jan2012/output
 #0002/Series0017
 #"
 
-# : <<adfadsfasdfadsffdfd
+: <<adfadsfasdfadsffdfd
 regList="
 ALVIN-POST
 PRONE-30cm
 PRONE-10cm
 "
-# adfadsfasdfadsffdfd
+adfadsfasdfadsffdfd
 
 # block comment, remove colon in the next line
-: <<adfadsfasdfadsffdfd
+# : <<adfadsfasdfadsffdfd
 regList="
 ALVIN-POST
 PRONE-30cm
@@ -119,10 +119,8 @@ SUPINE-10cm
 GILMER-PRE
 SUPINE-30cm
 SUPINE-10cm
-
-
 "
-adfadsfasdfadsffdfd
+# adfadsfasdfadsffdfd
 
 
 regList=( $regList ) # convert to array from string
@@ -177,10 +175,10 @@ for (( i=0; i<nbImg; i++)); do
   ls $maskMovPath
   ls $regOutputDir
 
-#   qsub -pe serial 2 -e $regOutputDir -o $regOutputDir -j y \
-#        cuneyt_jan2012_lung_registration_with_mask_tmp.sh \
-  
-  bash cuneyt_jan2012_lung_registration_with_mask_tmp.sh \
+#  bash cuneyt_jan2012_lung_registration_with_mask_tmp.sh \
+
+   qsub -pe serial 4 -e $regOutputDir -o $regOutputDir -j y \
+        cuneyt_jan2012_lung_registration_with_mask_tmp.sh \
         $origFixImagePath \
         $origMovImagePath \
         $maskFixPath \
