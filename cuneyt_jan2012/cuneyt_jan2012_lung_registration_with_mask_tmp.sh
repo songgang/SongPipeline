@@ -309,23 +309,35 @@ function AnalyzeDeformation()
   SMOOTHTOTALVECTORFIELD=${OUTPUT}TotalWarp-smooth.nii.gz  
   echo $C3D -mcs $TOTALVECTORFIELD -foreach -smooth 20vox -endfor -omc 3 $SMOOTHTOTALVECTORFIELD
   $C3D -mcs $TOTALVECTORFIELD -foreach -smooth 20vox -endfor -omc 3 $SMOOTHTOTALVECTORFIELD
+
+  echo "end of smoothing deformation field"
+
   # recompute the ps1 eigenvalues since deformation were not smoothed before
   echo $STRAIN 3 $SMOOTHTOTALVECTORFIELD ${OUTPUT}_PS 1 ${FIXEDMASK}
   $STRAIN 3 $SMOOTHTOTALVECTORFIELD ${OUTPUT}_PS 1 ${FIXEDMASK}
 
-  echo "end of strain"
+  # bug fix: change the header of the principal strain files to
+  # be same as teh fixed iamge
 
-  return
+  ${UTILITIESDIR}/ChangeImageInformation 3 ${OUTPUT}_PS1.nii.gz ${OUTPUT}_PS1.nii.gz 4 $fixImage
+  ${UTILITIESDIR}/ChangeImageInformation 3 ${OUTPUT}_PS2.nii.gz ${OUTPUT}_PS2.nii.gz 4 $fixImage
+  ${UTILITIESDIR}/ChangeImageInformation 3 ${OUTPUT}_PS3.nii.gz ${OUTPUT}_PS3.nii.gz 4 $fixImage
 
-echo "should not be here"
+  echo "end of recomputing principal strain"
+
+# return
+
+# echo "should not be here"
   # $STRAIN 3 $TOTALVECTORFIELD ${OUTPUT}_PS 1 ${FIXEDMASK}
   # $STRAIN 3 $TOTALVECTORFIELD ${OUTPUT}_PS 0 ${FIXEDMASK}
-  # $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSxx 0x0 ${FIXEDMASK}
-  # $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSyy 1x1 ${FIXEDMASK}
-  # $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSzz 2x2 ${FIXEDMASK}
-  # $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSxy 0x1 ${FIXEDMASK}
-  # $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSxz 0x2 ${FIXEDMASK}
-  # $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSyz 1x2 ${FIXEDMASK}
+  $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSxx 0x0 ${FIXEDMASK}
+  $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSyy 1x1 ${FIXEDMASK}
+  $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSzz 2x2 ${FIXEDMASK}
+  $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSxy 0x1 ${FIXEDMASK}
+  $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSxz 0x2 ${FIXEDMASK}
+  $STRAIN2 3 $TOTALVECTORFIELD ${OUTPUT}_DSyz 1x2 ${FIXEDMASK}
+
+  echo "end of recomputing directional strain"
 
   # bug fix: change the header of the Directional Strain files 
   # to be same as the fixed image. DS calculation seems didn't 
