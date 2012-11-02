@@ -1,4 +1,0 @@
--------------------------------------------------
-/home/songgang/mnt/pkg/bin/c3d /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/22i_20080916072049199_CT_shrink/22i_20080916072049199_CT_shrink_time.nii.gz -threshold [0 190 1 0] -o /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/22i_20080916072049199_CT_shrink/22i_20080916072049199_CT_shrink_airways.nii.gz
--------------------------------------------------
->>>>>>>>> DONE <<<<<<<<<<<<<<<<

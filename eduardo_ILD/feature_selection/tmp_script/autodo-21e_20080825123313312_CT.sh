@@ -1,2 +1,0 @@
-#!/bin/bash
-bash /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/script/seglungc.sh /mnt/aibs1/PUBLIC/Data/Input/DrewWarrenLungData/ATCases/ImageVolumes/21e_20080825123313312_CT/21e_20080825123313312_CT.nii.gz /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/21e_20080825123313312_CT /mnt/data1/PUBLIC/Data/Output/DrewWarrenLungData/ATCases/Dec_06_2008/21e_20080825123313312_CT/21e_20080825123313312_CT_smooth.nii.gz 21e_20080825123313312_CT
