@@ -1,8 +1,0 @@
-function write_mrmr_csv(filename, metric, p1, p2)
-
-fp = fopen(filename, 'wt');
-
-nb_fea = length(metric
-
-for ii = 1:
-fprintf(fp
