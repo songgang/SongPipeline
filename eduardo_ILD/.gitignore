@@ -1,0 +1,21 @@
+# temporary scripts which are dynamically generated
+# and also corresponding log files when running on
+# clusters
+#
+tmp_script/*
+feature_selection/*.m~
+feature_selection/*.sh~
+feature_selection/results.mat
+feature_selection/select.mat
+feature_selection/mrmr_img/*
+feature_selection/mrmr_para_tune/*
+feature_selection/mrmr/*.zip
+feature_selection/mrmr_tmp/*
+feature_selection/report/*
+feature_selection/svm/*.zip
+feature_selection/svm/*.tar.gz
+feature_selection/tmp_script/*
+feature_selection/tmp.jpg
+feature_selection/tmp.mat
+feature_selection/tmp.pdf
+feature_selection/txtfilename
