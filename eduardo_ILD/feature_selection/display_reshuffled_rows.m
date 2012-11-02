@@ -21,8 +21,8 @@ i6 = [1, 7, 19, 26];
 
 % iall = [i1, -1, i2, -1, i3, -1, i4, -1, i5, -1, i6];
 
-idxuip = [i1, i2, i3, -1];
-idxnonuip = [i4, i5, i6];
+idxuip = [i2 i3 -1];
+idxnonuip = [i5 i6 ];
 
 idxuip = idxuip(idxuip ~= 36);
 idxuip(idxuip > 36) = idxuip(idxuip > 36) - 1;
