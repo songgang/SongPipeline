@@ -19,3 +19,4 @@ feature_selection/tmp.jpg
 feature_selection/tmp.mat
 feature_selection/tmp.pdf
 feature_selection/txtfilename
+feature_selection/svm/*
