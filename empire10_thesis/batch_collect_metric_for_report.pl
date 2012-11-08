@@ -64,7 +64,7 @@ print "image list:" . join(' ', @image_list) . "\n";
 
 # open(OUTFILE, ">$current_script"); # begining of printing the 
 open(OUTFILE, ">test.csv");
-print OUTFILE "image, NeighborCC, NormalizedCC, affineNeighborCC, affineNormalizedCC\n";
+print OUTFILE "image, NeighborCC, NormalizedCC, PearsonCC, affineNeighborCC, affineNormalizedCC, affinePearsonCC\n";
 for(my $id_image=0; $id_image<@image_list; $id_image++){
 	my $current_image = $image_list[$id_image];
 
@@ -72,13 +72,14 @@ for(my $id_image=0; $id_image<@image_list; $id_image++){
 	
 	my $metric_gsyn_NeighborCC 		= get_scalar_value_in_the_next_line_of_keyword($metric_file, "NeighborhoodCorrelation");
 	my $metric_gsyn_NormalizedCC 	= get_scalar_value_in_the_next_line_of_keyword($metric_file, "NormalizedCorrelation");
+	my $metric_gsyn_PearsonCC 	= get_scalar_value_in_the_next_line_of_keyword($metric_file, "PearsonsCorrelation");
 
 	my $metric_file = "$output_root/$current_image/${current_image}_${test_case}_fix2movmetricCC_affineonly.txt";	
 
 	my $metric_affine_NeighborCC 	= get_scalar_value_in_the_next_line_of_keyword($metric_file, "NeighborhoodCorrelation");
-	my $metric_affine_NormalizedCC 	= get_scalar_value_in_the_next_line_of_keyword($metric_file, "NormalizedCorrelation");
+	my $metric_affine_PearsonCC 	= get_scalar_value_in_the_next_line_of_keyword($metric_file, "PearsonsCorrelation");
 
-	print OUTFILE "$current_image, $metric_gsyn_NeighborCC, $metric_gsyn_NormalizedCC, $metric_affine_NeighborCC, $metric_affine_NormalizedCC\n";
+	print OUTFILE "$current_image, $metric_gsyn_NeighborCC, $metric_gsyn_NormalizedCC, $metric_gsyn_PearsonCC, $metric_affine_NeighborCC, $metric_affine_NormalizedCC, $metric_affine_PearsonCC\n";
 }
 
 close(OUTFILE);	# end of printing the temporary script
@@ -98,9 +99,6 @@ print RSTFILE
 
 ";
 close RSTFILE; 
-
-
-
 
 sub get_scalar_value_in_the_next_line_of_keyword($$) {
 	my $filename = shift;

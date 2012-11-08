@@ -17,3 +17,31 @@ change script for betterin debugging:
 affine only
 affine + ANTS
 affine + antsRegistration
+
+5. use sphinx to generate the html
+
+go to sbuild/
+make html
+
+5.1 how to set up
+make a new directory sbuild
+run:
+sphinx-quickstart
+
+modify index.rst to include ../test.rst
+
+type make html
+
+result is in _build/
+
+not successfully finished using 4 slots
+04: memory
+08: memory
+10: pthread
+12: pthread? memory
+15: moemory
+20: pthread
+22: pthread
+24: memory
+
+try 8 slots now

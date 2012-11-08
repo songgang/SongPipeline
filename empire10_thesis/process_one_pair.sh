@@ -45,7 +45,7 @@ if [ ! -d `dirname $LOGFILE` ]
 	$DISP mkdir -p `dirname $LOGFILE`
 fi
 
-echo "start the log file at: "  `date` >> $LOGFILE
+echo "start the log file at: "  `date` > $LOGFILE
 
 function preprocess
 {
@@ -107,8 +107,8 @@ function register
 	gradient_sigma=6.0
 	total_field_sigma=0
 
-	# deformable_iteratons=200x200x200x200x50
-	deformable_iteratons=20x0x0x0x0
+	deformable_iteratons=200x200x200x200x50
+	# deformable_iteratons=20x0x0x0x0
 	metric_radius=2
 
 	# TRANSFORM="SyN[$gradient_step,$time_step,$intergration_delta]"
@@ -189,6 +189,14 @@ function postprocess
 	$DISP $MYARGS >> $METRICFILE 2>&1    
 	echo >> $METRICFILE
 
+	echo "start date: " `date` >> $METRICFILE
+	MYARGS="$IMAGEMATH 3 void.txt PearsonCorrelation $FIXEDIMAGE $DEFORMEDIMAGE"
+	    echo $MYARGS >> $METRICFILE
+	$DISP $MYARGS >> $METRICFILE 2>&1    
+	echo >> $METRICFILE
+
+
+
 	echo "end metric date:" `date` >> $METRICFILE
 }
 
@@ -232,6 +240,13 @@ function postprocess_affine_only
 	$DISP $MYARGS >> $METRICFILE 2>&1    
 	echo >> $METRICFILE
 
+		echo "start date: " `date` >> $METRICFILE
+	MYARGS="$IMAGEMATH 3 void.txt PearsonCorrelation $FIXEDIMAGE $AFFINEONLYIMAGE"
+	    echo $MYARGS >> $METRICFILE
+	$DISP $MYARGS >> $METRICFILE 2>&1    
+	echo >> $METRICFILE
+
+
 	echo "end metric date:" `date` >> $METRICFILE
 }
 
@@ -240,7 +255,7 @@ function postprocess_affine_only
 # preprocess_mask $FIXEDMASK $FIXMASKPREPROCESS
 # preprocess_mask $MOVINGMASK $MOVMASKPREPROCESS
 
-# register $FIXPREPROCESS $MOVPREPROCESS $FIXMASKPREPROCESS $MOVMASKPREPROCESS $REGPREFIX
+register $FIXPREPROCESS $MOVPREPROCESS $FIXMASKPREPROCESS $MOVMASKPREPROCESS $REGPREFIX
 
 postprocess $FIXPREPROCESS $MOVPREPROCESS $REGPREFIX
 postprocess_affine_only $FIXPREPROCESS $MOVPREPROCESS $REGPREFIX
