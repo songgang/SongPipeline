@@ -26,44 +26,110 @@ use File::Path;
 use File::Basename;
 use Data::Dumper;
 use empire10;
+use Scalar::Util qw(looks_like_number);
 
 # this is for preprocess Input/tmp
 # my $temp_execute_root = "/home/songgang/project/Empire10/Empire10_thesis/Input/tmp";
 
-# this is for preprocess Output/tmp
-my $temp_execute_root = "/home/songgang/project/Empire10/Empire10_thesis/Output/tmp";
 my $test_case = "baseline-register";
-my $process_script = "/home/songgang/project/Empire10/Empire10_thesis/Script/SongPipeline/empire10_thesis/process_one_pair.sh";
+my $output_root="/home/songgang/project/Empire10/Empire10_thesis/Output/${test_case}";
 
-# my @image_tasks = define_image_tasks();
+
+my @image_tasks = define_image_tasks();
 # my @image_tasks = define_image_tasks_one_image_per_taskB();
-my @image_tasks = define_image_tasks_debug_one_image();
+# my @image_tasks = define_image_tasks_debug_one_image();
 
-# either of the following are good for print array
-# of references of arrays
-print_image_tasks(@image_tasks);
-# print Dumper(@image_tasks);
+# two steps:
+# 1. iterate over all images
+# collect .txt files for each image(pair)
+# to get a .csv file for all images
+# and a .readme file to explain,
+# which might serve as the title of the table
+# 2. generate sphinx documentation from .csv files
 
+
+# collect registration time
+# collect metric 1
+# collect metric 2
+
+my @image_list = ();
 for(my $id_task=0; $id_task<@image_tasks; $id_task++) {
-	
 	my $current_node = $image_tasks[$id_task][0];
 	my @current_image_list = @{$image_tasks[$id_task][1]};
+	push(@image_list, @current_image_list);
+}
 
-	print "DEBUG>> ====================================\n";
-	print "DEBUG>> $current_node\n";	
-	print "DEBUG>> @current_image_list \n";
-	print "DEBUG>> $current_script \n";
+print "image list:" . join(' ', @image_list) . "\n";
 
-	print "DEBUG>> ------------------------------------\n";
-	open(OUTFILE, ">$current_script"); # begining of printing the 
+
+# open(OUTFILE, ">$current_script"); # begining of printing the 
+open(OUTFILE, ">test.csv");
+print OUTFILE "image, NeighborCC, NormalizedCC, affineNeighborCC, affineNormalizedCC\n";
+for(my $id_image=0; $id_image<@image_list; $id_image++){
+	my $current_image = $image_list[$id_image];
+
+	my $metric_file = "$output_root/$current_image/${current_image}_${test_case}_fix2movmetricCC.txt";
 	
-	for (my $id_image=0; $id_image< scalar(@current_image_list); $id_image++ ) {		
-		my $image_name = $current_image_list[$id_image];
-		
-		print OUTFILE "bash $process_script $image_name $test_case\n";
+	my $metric_gsyn_NeighborCC 		= get_scalar_value_in_the_next_line_of_keyword($metric_file, "NeighborhoodCorrelation");
+	my $metric_gsyn_NormalizedCC 	= get_scalar_value_in_the_next_line_of_keyword($metric_file, "NormalizedCorrelation");
+
+	my $metric_file = "$output_root/$current_image/${current_image}_${test_case}_fix2movmetricCC_affineonly.txt";	
+
+	my $metric_affine_NeighborCC 	= get_scalar_value_in_the_next_line_of_keyword($metric_file, "NeighborhoodCorrelation");
+	my $metric_affine_NormalizedCC 	= get_scalar_value_in_the_next_line_of_keyword($metric_file, "NormalizedCorrelation");
+
+	print OUTFILE "$current_image, $metric_gsyn_NeighborCC, $metric_gsyn_NormalizedCC, $metric_affine_NeighborCC, $metric_affine_NormalizedCC\n";
+}
+
+close(OUTFILE);	# end of printing the temporary script
+
+
+# generate sphinx documentation
+
+open RSTFILE, ">test.rst";
+print RSTFILE
+"**************************************
+
+**image_list** ``\@image_list``
+
+.. csv-table:: Frozen Delights!
+	:header-rows: 1
+	:file: test.csv
+
+";
+close RSTFILE; 
+
+
+
+
+sub get_scalar_value_in_the_next_line_of_keyword($$) {
+	my $filename = shift;
+	my $keyword = shift;
+
+	open ( INPUTFILE, "$filename") || return "File-not-found";
+	my @content = <INPUTFILE>;
+	close(INPUTFILE);
+
+	my $p=0;
+	my $ret = "N/A";
+	while($p<scalar(@content)) {
+		my $line = $content[$p];
+		if ( $line eq '' ) {
+			next;
+		}
+		$line =~ s/\r|\n//g;
+		if ($line =~ /$keyword/) {
+			$ret =$content[++$p];
+			$ret =~ s/\r|\n//g;
+			last;
+		}
+		$p++;
 	}
 
-	close(OUTFILE);	# end of printing the temporary script	
-	print "DEBUG>> ------------------------------------\n";
-	
+	if (!looks_like_number($ret)) {
+		$ret = "N/A";
+	}
+
+	return $ret;
 }
+

@@ -36,7 +36,7 @@ use empire10;
 my $temp_execute_root = "/home/songgang/project/Empire10/Empire10_thesis/Output/tmp";
 my $test_case = "baseline-register";
 my $process_script = "/home/songgang/project/Empire10/Empire10_thesis/Script/SongPipeline/empire10_thesis/process_one_pair.sh";
-my $serial_slots = 4;
+my $serial_slots = 2;
 
 # my %global_para = (
 # 	test_case => $test_case,
