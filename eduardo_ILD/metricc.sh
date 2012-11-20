@@ -226,14 +226,14 @@ MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 > $res_RLM
 
 # try use scale 2, 4 in GenerateCooccurrenceMeasures and GenerateRunLengthMeasures
 local offsetRadius=2;
-local res_Cooccur=$RESDIR/res-alex-Cooccur-R{$offsetRadius}.txt
-local res_RLM=$RESDIR/res-alex-RLM-R{$offsetRadius}.txt
+local res_Cooccur=$RESDIR/res-alex-Cooccur-R${offsetRadius}.txt
+local res_RLM=$RESDIR/res-alex-RLM-R${offsetRadius}.txt
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
 local offsetRadius=4;
-local res_Cooccur=$RESDIR/res-alex-Cooccur-R{$offsetRadius}.txt
-local res_RLM=$RESDIR/res-alex-RLM-R{$offsetRadius}.txt
+local res_Cooccur=$RESDIR/res-alex-Cooccur-R${offsetRadius}.txt
+local res_RLM=$RESDIR/res-alex-RLM-R${offsetRadius}.txt
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
@@ -259,14 +259,14 @@ MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 > $res_RLM
 
 # try use scale 2, 4 in GenerateCooccurrenceMeasures and GenerateRunLengthMeasures
 local offsetRadius=2;
-local res_Cooccur=$RESDIR/res-maya-outer-Cooccur-R{$offsetRadius}.txt
-local res_RLM=$RESDIR/res-maya-outer-RLM-R{$offsetRadius}.txt
+local res_Cooccur=$RESDIR/res-maya-outer-Cooccur-R${offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-outer-RLM-R${offsetRadius}.txt
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
 local offsetRadius=4;
-local res_Cooccur=$RESDIR/res-maya-outer-Cooccur-R{$offsetRadius}.txt
-local res_RLM=$RESDIR/res-maya-outer-RLM-R{$offsetRadius}.txt
+local res_Cooccur=$RESDIR/res-maya-outer-Cooccur-R${offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-outer-RLM-R${offsetRadius}.txt
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
@@ -292,14 +292,14 @@ MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 > $res_RLM
 
 # try use scale 2, 4 in GenerateCooccurrenceMeasures and GenerateRunLengthMeasures
 local offsetRadius=2;
-local res_Cooccur=$RESDIR/res-maya-inner-Cooccur-R{$offsetRadius}.txt
-local res_RLM=$RESDIR/res-maya-inner-RLM-R{$offsetRadius}.txt
+local res_Cooccur=$RESDIR/res-maya-inner-Cooccur-R${offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-inner-RLM-R${offsetRadius}.txt
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
 local offsetRadius=4;
-local res_Cooccur=$RESDIR/res-maya-inner-Cooccur-R{$offsetRadius}.txt
-local res_RLM=$RESDIR/res-maya-inner-RLM-R{$offsetRadius}.txt
+local res_Cooccur=$RESDIR/res-maya-inner-Cooccur-R${offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-inner-RLM-R${offsetRadius}.txt
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
@@ -325,14 +325,14 @@ MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 > $res_RLM
 
 # try use scale 2, 4 in GenerateCooccurrenceMeasures and GenerateRunLengthMeasures
 local offsetRadius=2;
-local res_Cooccur=$RESDIR/res-maya-both-Cooccur-R{$offsetRadius}.txt
-local res_RLM=$RESDIR/res-maya-both-RLM-R{$offsetRadius}.txt
+local res_Cooccur=$RESDIR/res-maya-both-Cooccur-R${offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-both-RLM-R${offsetRadius}.txt
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
 local offsetRadius=4;
-local res_Cooccur=$RESDIR/res-maya-both-Cooccur-R{$offsetRadius}.txt
-local res_RLM=$RESDIR/res-maya-both-RLM-R{$offsetRadius}.txt
+local res_Cooccur=$RESDIR/res-maya-both-Cooccur-R${offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-both-RLM-R${offsetRadius}.txt
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
