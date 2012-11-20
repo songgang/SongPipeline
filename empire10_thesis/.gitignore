@@ -1,0 +1,4 @@
+# for sphinx build
+sbuild/
+*.csv
+*.rst
