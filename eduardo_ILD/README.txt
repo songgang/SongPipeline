@@ -1,5 +1,32 @@
 notes for ILD sutype study.txt
 
+* Nov 20
+
+1. 
+
+Eduardo modified these mask (where Alex missed manual correction)
+AlexMask/EduardoManualMask
+
+12I_Eduardo.nii.gz 1I_Eduardo.nii.gz  27I_Eduardo.nii.gz 6I_Eduardo.nii.gz  7I_Eduardo.nii.gz
+
+These masks will replace the masks in AlexMask/*__manual_char.nii.gz
+And those old _manual_char.nii.gz will be saved to EduardoManualMaskBeforeCorrection
+
+2. Downsample case 36 to 1mm in z
+- original input image
+- maya's mask
+- alex's mask
+
+3. using the original script run 
+
+12
+1
+27
+6
+7
+36
+
+
 * Oct 18
 
 Needs 
