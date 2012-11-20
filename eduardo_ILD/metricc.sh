@@ -224,6 +224,19 @@ MYDO $BINDIR/CalculateFirstOrderStatisticsFromImage 3 $IMG $MASK 1 100 /tmp/tmp_
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 > $res_RLM
 
+# try use scale 2, 4 in GenerateCooccurrenceMeasures and GenerateRunLengthMeasures
+local offsetRadius=2;
+local res_Cooccur=$RESDIR/res-alex-Cooccur-R{$offsetRadius}.txt
+local res_RLM=$RESDIR/res-alex-RLM-R{$offsetRadius}.txt
+MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
+MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
+
+local offsetRadius=4;
+local res_Cooccur=$RESDIR/res-alex-Cooccur-R{$offsetRadius}.txt
+local res_RLM=$RESDIR/res-alex-RLM-R{$offsetRadius}.txt
+MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
+MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
+
 }
 
 ###########################
@@ -243,6 +256,19 @@ MYDO $BINDIR/CalculateVolumeFromBinaryImage 3 $MASK  > $res_Volume
 MYDO $BINDIR/CalculateFirstOrderStatisticsFromImage 3 $IMG $MASK 1 100 /tmp/tmp_${res_FirstOrder}.tmp.txt > $res_FirstOrder
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 > $res_RLM
+
+# try use scale 2, 4 in GenerateCooccurrenceMeasures and GenerateRunLengthMeasures
+local offsetRadius=2;
+local res_Cooccur=$RESDIR/res-maya-outer-Cooccur-R{$offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-outer-RLM-R{$offsetRadius}.txt
+MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
+MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
+
+local offsetRadius=4;
+local res_Cooccur=$RESDIR/res-maya-outer-Cooccur-R{$offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-outer-RLM-R{$offsetRadius}.txt
+MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
+MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
 }
 
@@ -264,6 +290,19 @@ MYDO $BINDIR/CalculateFirstOrderStatisticsFromImage 3 $IMG $MASK 1 100 /tmp/tmp_
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 > $res_RLM
 
+# try use scale 2, 4 in GenerateCooccurrenceMeasures and GenerateRunLengthMeasures
+local offsetRadius=2;
+local res_Cooccur=$RESDIR/res-maya-inner-Cooccur-R{$offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-inner-RLM-R{$offsetRadius}.txt
+MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
+MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
+
+local offsetRadius=4;
+local res_Cooccur=$RESDIR/res-maya-inner-Cooccur-R{$offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-inner-RLM-R{$offsetRadius}.txt
+MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
+MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
+
 }
 
 ###########################
@@ -283,6 +322,19 @@ MYDO $BINDIR/CalculateVolumeFromBinaryImage 3 $MASK  > $res_Volume
 MYDO $BINDIR/CalculateFirstOrderStatisticsFromImage 3 $IMG $MASK 1 100 /tmp/tmp_${res_FirstOrder}.tmp.txt > $res_FirstOrder
 MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 > $res_Cooccur
 MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 > $res_RLM
+
+# try use scale 2, 4 in GenerateCooccurrenceMeasures and GenerateRunLengthMeasures
+local offsetRadius=2;
+local res_Cooccur=$RESDIR/res-maya-both-Cooccur-R{$offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-both-RLM-R{$offsetRadius}.txt
+MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
+MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
+
+local offsetRadius=4;
+local res_Cooccur=$RESDIR/res-maya-both-Cooccur-R{$offsetRadius}.txt
+local res_RLM=$RESDIR/res-maya-both-RLM-R{$offsetRadius}.txt
+MYDO $BINDIR/GenerateCooccurrenceMeasures 3 $IMG 256 $MASK 1 $offsetRadius > $res_Cooccur
+MYDO $BINDIR/GenerateRunLengthMeasures 3 $IMG 256 $MASK 1 $offsetRadius> $res_RLM
 
 }
 
@@ -317,9 +369,6 @@ fi
 ALEXLUNGONLYMASK=$RESDIR/$LUNGNAME"_alexlungonly"".nii.gz"
 
 
-# : <<'ENDENDEND'
-
-
 if [ $ALEXLUNGMASK != "NotAvailable" ]
 then
     echo "process Alex whole lung mask"
@@ -342,7 +391,8 @@ tic
 MAYAOUTERMASK=$RESDIR/$LUNGNAME"_mayaouter"".nii.gz"
 echo MAYAOUTERMASK $MAYAOUTERMASK
 # label 1 is outer
-if [ $ALEXLUNGMASK != "NotAvailable" ]
+# if [ $ALEXLUNGMASK != "NotAvailable" ]
+if (( 1==0 )) # not using Alex's mask
 then
     MYDO $C3D $MAYALUNGMASK -threshold 1 1 1 0 $ALEXLUNGONLYMASK -times -o $MAYAOUTERMASK
 else
@@ -357,7 +407,8 @@ tic
 MAYAINNERMASK=$RESDIR/$LUNGNAME"_mayainner"".nii.gz"
 echo MAYAINNERMASK $MAYAINNERMASK
 # label 2 is inner
-if [ $ALEXLUNGMASK != "NotAvailable" ]
+# if [ $ALEXLUNGMASK != "NotAvailable" ]
+if (( 1==0 )) # not using Alex's mask
 then
     MYDO $C3D $MAYALUNGMASK -threshold 2 2 1 0 $ALEXLUNGONLYMASK -times -o $MAYAINNERMASK
 else
@@ -368,9 +419,6 @@ process_maya_inner $IMG $MAYAINNERMASK $RESDIR
 toc
 
 
-# ENDENDEND
-
-
 
 
 echo "process Maya both outer+inner sphere lung mask"
@@ -378,7 +426,8 @@ tic
 MAYABOTHMASK=$RESDIR/$LUNGNAME"_mayaboth"".nii.gz"
 echo MAYABOTHMASK $MAYABOTHMASK
 # label 2 is inner, label 1 is outer
-if [ $ALEXLUNGMASK != "NotAvailable" ]
+# if [ $ALEXLUNGMASK != "NotAvailable" ]
+if (( 1==0 )) # not using Alex's mask
 then
     MYDO $C3D $MAYALUNGMASK -threshold 1 2 1 0 $ALEXLUNGONLYMASK -times -o $MAYABOTHMASK
 else

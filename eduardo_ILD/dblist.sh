@@ -16,7 +16,7 @@ dList(){
 
 phaselist="
 I
-"	
+"
 
 subjectlist="
 1

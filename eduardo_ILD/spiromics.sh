@@ -114,7 +114,7 @@ do
 #     /bin/bash $TMPQSUB_FILE
 #  	 itksnap -g $LUNGIMG -s $AIRWAYMASK
      
-     qsub -pe serial 3 -S /bin/bash -N "ILD-"${myimg}".sh" -j y -o $CURDIR/"tmp_script" $TMPQSUB_FILE
+     qsub -pe serial 2 -S /bin/bash -N "ILD-"${myimg}".sh" -j y -o $CURDIR/"tmp_script" $TMPQSUB_FILE
      # bash $TMPQSUB_FILE
 
     #    break

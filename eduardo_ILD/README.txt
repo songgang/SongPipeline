@@ -18,13 +18,28 @@ And those old _manual_char.nii.gz will be saved to EduardoManualMaskBeforeCorrec
 - alex's mask
 
 3. using the original script run 
-
+==> actually rerun on the whole 40 cases, reason is next for Alex's Mask*Maya's Mask
 12
 1
 27
 6
 7
 36
+
+4. try not using Alex's Mask * Maya's Mask, using all Maya's Mask
+this might help for increase masks on peripheral lung regions
+
+try: qsub -pe serial 2 instead of 3
+seems working ok
+
+Output_AlexMaya has this result
+
+
+5. look #27 and #19 again
+
+which one has fiber from peripheral? (reticulation?)
+need to study from Eduardo again
+
 
 
 * Oct 18
